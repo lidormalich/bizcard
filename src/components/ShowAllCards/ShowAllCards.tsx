@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import Card from "../interface/Card";
-import { getAllCard } from "../services/cardServices";
+import Card from "../../interface/Card";
+import { getAllCard } from "../../services/cardServices";
 
 interface ShowAllCardsProps {
 

@@ -12,7 +12,7 @@ import About from './components/About';
 import Profile from './components/Profile/Profile';
 import NewCardCMP from './components/NewCard/NewCardCMP';
 import CreateCard from './components/NewCard/CreateCard';
-import ShowAllCards from './components/ShowAllCards';
+import ShowAllCards from './components/ShowAllCards/ShowAllCards';
 
 
 function App() {
