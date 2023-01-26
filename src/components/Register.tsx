@@ -12,9 +12,7 @@ interface RegisterProps {
 
 const Register: FunctionComponent<RegisterProps> = () => {
     let navigate = useNavigate();
-    // let createUserCart = (userId: number) => {
-    //     creactCart(userId).catch((e) => console.log(e));
-    // }
+
     let formik = useFormik({
         initialValues: { email: "", password: "", name: "", isBusiness: false, image: "" },
         validationSchema: yup.object({
@@ -27,12 +25,13 @@ const Register: FunctionComponent<RegisterProps> = () => {
         onSubmit: (values: UserInterface) => {
             addUser({ ...values })
                 .then((res) => {
-                    // createUserCart(res.data.id);
-                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: false, userID: res.data.id }));
+                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
                     successMsg("You registered successfully!");
-                    navigate("/home");
+                    navigate("/card");
                 })
                 .catch((err) => console.log(err));
+            // console.log(values);
+
         },
     });
     return (
@@ -71,7 +70,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         <p className="text-danger">{formik.errors.email}</p>
                     )}
                 </div>
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         type="password"
                         className="form-control"
@@ -86,6 +85,40 @@ const Register: FunctionComponent<RegisterProps> = () => {
                     {formik.touched.password && formik.errors.password && (
                         <p className="text-danger">{formik.errors.password}</p>
                     )}
+                </div>
+                <div className="form-floating mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="floatingimage"
+                        placeholder="image"
+                        name="image"
+                        onChange={formik.handleChange}
+                        value={formik.values.image}
+                        onBlur={formik.handleBlur}
+                    />
+                    <label htmlFor="floatingimage">Image</label>
+                    {formik.touched.image && formik.errors.image && (
+                        <p className="text-danger">{formik.errors.image}</p>
+                    )}
+                </div>
+
+                <div className="form-floating">
+                    <span>
+                        <label >User Type:</label>
+                        {/* <div className="custom-control custom-switch"> */}
+                        <input type="checkbox" className="custom-control-input"
+                            id="floatingIsBusiness"
+                            placeholder="isBusiness"
+                            name="isBusiness"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                        <label className="custom-control-label" htmlFor="floatingIsBusiness">selecte for Business</label>
+                        {/* </div> */}
+                    </span>
+
+
                 </div>
                 <button
                     type="submit"

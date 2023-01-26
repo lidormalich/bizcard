@@ -13,6 +13,25 @@
             "name": "David Bozaglo",
             "isAdmin": false,
             "id": 2
+        },
+        {
+            "email": "david@gmail.com",
+            "password": "12345678",
+            "name": "Malich-Mi",
+            "isBusiness": true,
+            "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png",
+            "id": 3
+        }
+    ],
+    "cards": [
+        {
+            "id": "number",
+            "name": "string",
+            "image": "string",
+            "userId": "number",
+            "description": "string",
+            "address": "string",
+            "phone": "string"
         }
     ]
 }

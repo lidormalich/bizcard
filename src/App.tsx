@@ -7,6 +7,11 @@ import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBarCMP from './components/NavBarCMP';
 import Register from './components/Register';
+import Login from './components/Login';
+import About from './components/About';
+import Profile from './components/Profile/Profile';
+import NewCardCMP from './components/NewCard/NewCardCMP';
+import CreateCard from './components/NewCard/CreateCard';
 
 
 function App() {
@@ -20,6 +25,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/signin' element={<Login />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/Newcard' element={<NewCardCMP />} />
+          <Route path='/Newcardcmp' element={<CreateCard />} />
+
           {/* <Route path='/login' element={<Login setIsLogIn={setIsLogIn} />} />
             <Route path='/home' element={<Home setIsLogIn={setIsLogIn} />} />
             <Route path='/cart' element={<Cart setIsLogIn={setIsLogIn} />} />
