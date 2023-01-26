@@ -21,9 +21,11 @@ const Login: FunctionComponent<LoginProps> = () => {
         }),
         onSubmit: (values: UserInterface) => {
             checkUser(values).then((res) => {
+                console.log(res.data);
+
                 if (res.data.length) {
                     // setIsLogIn(true);
-                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isAdmin, userID: res.data[0].id }));
+                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isBusiness, userID: res.data[0].id }));
                     successMessage("You Loged-In :)");
                     navigate('/home');
                 }

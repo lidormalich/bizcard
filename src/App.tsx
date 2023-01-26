@@ -12,6 +12,7 @@ import About from './components/About';
 import Profile from './components/Profile/Profile';
 import NewCardCMP from './components/NewCard/NewCardCMP';
 import CreateCard from './components/NewCard/CreateCard';
+import ShowAllCards from './components/ShowAllCards';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/Newcard' element={<NewCardCMP />} />
           <Route path='/Newcardcmp' element={<CreateCard />} />
+          <Route path='/Cards' element={<ShowAllCards />} />
 
           {/* <Route path='/login' element={<Login setIsLogIn={setIsLogIn} />} />
             <Route path='/home' element={<Home setIsLogIn={setIsLogIn} />} />

@@ -1,37 +1,39 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "Admin",
-            "email": "admin@gmail.com",
-            "password": "adminadmin",
-            "isAdmin": true
-        },
-        {
-            "email": "david@gmail.com",
-            "password": "12345678",
-            "name": "David Bozaglo",
-            "isAdmin": false,
-            "id": 2
-        },
-        {
-            "email": "david@gmail.com",
-            "password": "12345678",
-            "name": "Malich-Mi",
-            "isBusiness": true,
-            "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png",
-            "id": 3
-        }
-    ],
-    "cards": [
-        {
-            "id": "number",
-            "name": "string",
-            "image": "string",
-            "userId": "number",
-            "description": "string",
-            "address": "string",
-            "phone": "string"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "adminadmin",
+      "isBusiness": true,
+      "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png"
+    },
+    {
+      "email": "david@gmail.com",
+      "password": "12345678",
+      "name": "David Bozaglo",
+      "isBusiness": false,
+      "id": 2
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "name": "string",
+      "image": "string",
+      "userId": "1    ",
+      "description": "string",
+      "address": "string",
+      "phone": "string"
+    },
+    {
+      "companyName": "לידור מליח",
+      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/ab689b07-6805-4b1f-95af-9203ba55b268.__CR0,0,300,400_PT0_SX300_V1___.jpg",
+      "userId": 1,
+      "description": "Brand\tLogitech G Color\tMint",
+      "address": "hime toren 10 dira 6",
+      "phone": "+972526761204",
+      "id": 2
+    }
+  ]
 }

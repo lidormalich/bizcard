@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 import Card from "../../interface/Card";
+import { addCard } from "../../services/cardServices";
 import { errorMessage, successMessage } from "../../services/FeedbackService";
 interface CreateCardProps {
 
@@ -10,33 +11,34 @@ interface CreateCardProps {
 
 const CreateCard: FunctionComponent<CreateCardProps> = () => {
     // let navigate = useNavigate();
-
+    let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
     let formik = useFormik({
         initialValues: {
-            name: "",
+            companyName: "",
             image: "",
-            userId: 0,
+            userId: userID,
             description: "",
             address: "",
             phone: "",
         },
-        // enableReinitialize: true,
+        enableReinitialize: true,
         validationSchema: yup.object({
-            name: yup.string().required().min(2),
+            companyName: yup.string().required().min(2),
             image: yup.string(),
             description: yup.string().required().min(5),
             address: yup.string().required().min(5),
             phone: yup.string().required().min(7),
 
+
         }),
         onSubmit: (values: Card) => {
-            // addUser({ ...values })
-            //     .then((res) => {
-            //         sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
-            //         successMsg("You registered successfully!");
-            //         navigate("/card");
-            //     })
-            //     .catch((err) => console.log(err));
+            addCard({ ...values })
+                .then((res) => {
+                    // sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
+                    successMessage("You registered successfully!");
+                    // navigate("/card");
+                })
+                .catch((err) => console.log(err));
             console.log(values);
 
         },
@@ -51,14 +53,14 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
                         className="form-control"
                         id="floatingInputName"
                         placeholder="Name PLSSSSS"
-                        name="name"
+                        name="companyName"
                         onChange={formik.handleChange}
-                        value={formik.values.name}
+                        value={formik.values.companyName}
                         onBlur={formik.handleBlur}
                     />
-                    <label htmlFor="floatingInputName">Name</label>
-                    {formik.touched.name && formik.errors.name && (
-                        <p className="text-danger">{formik.errors.name}</p>
+                    <label htmlFor="floatingInputName">Company Name</label>
+                    {formik.touched.companyName && formik.errors.companyName && (
+                        <p className="text-danger">{formik.errors.companyName}</p>
                     )}
                 </div>
                 <div className="form-floating mb-3">
@@ -125,20 +127,14 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
                         <p className="text-danger">{formik.errors.image}</p>
                     )}
                 </div>
-
-                {/* 888888888888888888888888888888888888 */}
-
-
-
                 <button
                     type="submit"
                     className="btn btn-secondary w-100 my-3"
                     disabled={!formik.dirty || !formik.isValid}
                 >
-                    Register
+                    <i className="fa-solid fa-plus text-white"></i> Add
                 </button>
             </form>
-            <Link to="/">Already have user? Login here</Link>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 export default interface Card {
     id?: number,
-    name?: string,
+    companyName: string,
     image: string,
     userId: number,
     description: string,
