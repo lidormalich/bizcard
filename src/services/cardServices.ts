@@ -12,6 +12,9 @@ export function getSpicificCard(cardID: Number) {
 export function getAllCard() {
     return axios.get(api);
 }
+export function getAllUserCards(userId: number) {
+    return axios.get(`${api}?userId=2`);
+}
 export function addCard(cardToAdd: Card) {
     return axios.post(api, cardToAdd);
 }

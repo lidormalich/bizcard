@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 1200px;
+  max-width: 100%;
+  margin: auto;
+}
+
+.display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.display .display-item {
+  flex-grow: 1;
+  padding: 15px;
+}
+.display .display-item > span {
+  display: block;
+  text-align: center;
+  padding: 15px;
+  font-size: 2em;
+}
+
+.business-card,
+.flippable-business-card {
+  width: 550px;
+  height: 300px;
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.business-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #fff 0%, #fff 50%, rgba(0, 200, 200, 0.4) 50.5%, rgba(0, 200, 200, 0.6) 100%);
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.business-card .profile {
+  display: flex;
+  flex-basis: 150px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 15px;
+}
+.business-card .profile .profile-image {
+  background-position: center;
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
+.business-card .profile .profile-title {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.business-card .profile .profile-title h2 {
+  font-size: 1.4em;
+}
+.business-card .info {
+  display: flex;
+  flex-grow: 1;
+}
+.business-card .info .info-contact {
+  padding: 15px;
+  display: flex;
+  flex-shrink: 1;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.business-card .info .info-contact a {
+  color: rgba(0, 0, 0, 0.8);
+}
+.business-card .info .info-contact i {
+  font-size: 1.2em;
+  width: 25px;
+}
+.business-card .info .info-bio {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 50%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+  text-align: center;
+}
+
+.flippable-business-card {
+  perspective: 1000px;
+}
+.flippable-business-card .front,
+.flippable-business-card .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.flippable-business-card .front {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.flippable-business-card .front .front-top {
+  height: 150px;
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/002/142/763/small/luxurious-black-and-gold-background-free-vector.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.flippable-business-card .front .front-top h2,
+.flippable-business-card .front .front-top h3 {
+  display: block;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), -1px -1px 1px rgba(0, 0, 0, 0.4);
+}
+.flippable-business-card .front .front-top .profile-image {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%) translateY(50%);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 4px solid white;
+}
+.flippable-business-card .front .front-top .profile-image:before {
+  content: "";
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  background-size: cover;
+  background-position: center;
+}
+.flippable-business-card .front .front-bottom {
+  height: 150px;
+  display: flex;
+  color: rgba(255, 255, 255, 0.8);
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/002/142/763/small/luxurious-black-and-gold-background-free-vector.jpg);
+}
+.flippable-business-card .front .front-bottom > div {
+  flex-grow: 1;
+  flex-basis: 50%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+.flippable-business-card .front .front-bottom > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 40px;
+  padding-left: 15px;
+}
+.flippable-business-card .front .front-bottom > div:first-child h2 {
+  font-size: 1.4em;
+}
+.flippable-business-card .front .front-bottom > div:last-child {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 40px;
+  padding-right: 15px;
+}
+.flippable-business-card .front .front-bottom > div:last-child a {
+  color: rgba(0, 0, 0, 0.8);
+}
+.flippable-business-card .front .front-bottom > div:last-child i {
+  font-size: 1.2em;
+  width: 25px;
+}
+.flippable-business-card .front .front-bottom > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.flippable-business-card .backBGC {
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/002/142/763/small/luxurious-black-and-gold-background-free-vector.jpg);
+}
+.flippable-business-card .back {
+  transform: rotateX(180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: none;
+  background-color: #c0c0c0;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #c0c0c0 0%, #c0c0b8 8%, #b5b4b4 30%, #c0c0c0 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #c0c0c0 8%, #bebebe 25%, #a2a2a2 62.5%, #959595 100%);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.flippable-business-card .back .title {
+  height: 75px;
+  padding: 15px;
+}
+.flippable-business-card .back .bio {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  justify-content: space-around;
+}
+.flippable-business-card .back .social {
+  height: 75px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.flippable-business-card .back .social .sms {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2em;
+}
+.flippable-business-card:hover .back {
+  transform: rotateX(360deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.flippable-business-card:hover .front {
+  transform: rotateX(180deg);
+  box-shadow: none;
+}/*# sourceMappingURL=ShowAllCards.css.map */

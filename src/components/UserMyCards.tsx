@@ -1,22 +1,23 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import Card from "../../interface/Card";
-import { getAllCard } from "../../services/cardServices";
-import "./ShowAllCards.css";
+import Card from "../interface/Card";
+import { getAllUserCards } from "../services/cardServices";
 
-interface ShowAllCardsProps {
+interface UserMyCardsProps {
 
 }
 
-const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
-    // let allCard: Card[] = [];
+const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
     let [allCard, setProducts] = useState<Card[]>([]);
-
+    let userId: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
     useEffect(() => {
-        getAllCard().then((res) => {
+        console.log(userId);
+
+        getAllUserCards(userId).then((res) => {
+            console.log(res.data);
+
             setProducts(res.data);
         }).catch((e) => console.log(e))
     }, []);
-
     return (<>
         <div className="container">
             {allCard.length ? allCard.map((cardItem: Card) => (
@@ -81,8 +82,7 @@ const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
                 </div>
 
             )) : <p>no card</p>}
-        </div>
-    </>);
+        </div></>);
 }
 
-export default ShowAllCards;
+export default UserMyCards;

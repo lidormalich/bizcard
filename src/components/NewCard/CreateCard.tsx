@@ -15,6 +15,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
     let formik = useFormik({
         initialValues: {
             companyName: "",
+            companyEmail: "",
             image: "",
             userId: userID,
             description: "",

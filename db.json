@@ -19,12 +19,13 @@
   "cards": [
     {
       "id": 1,
-      "name": "string",
-      "image": "string",
-      "userId": "1    ",
+      "name": "temp",
+      "image": "",
+      "userId": 1,
       "description": "string",
+      "companyEmail": "string",
       "address": "string",
-      "phone": "string"
+      "phone": "0555555555"
     },
     {
       "companyName": "לידור מליח",
@@ -32,8 +33,19 @@
       "userId": 1,
       "description": "Brand\tLogitech G Color\tMint",
       "address": "hime toren 10 dira 6",
+      "companyEmail": "hime toren 10 dira 6",
       "phone": "+972526761204",
       "id": 2
+    },
+    {
+      "companyName": "King BOB",
+      "image": "https://i.pinimg.com/originals/46/20/91/462091b66db05425ff0e8bba9d6249e7.jpg",
+      "userId": 1,
+      "description": "MINIONS",
+      "address": "221 becker street",
+      "phone": "00000000000000",
+      "companyEmail": "lidormalich@gmail.com",
+      "id": 3
     }
   ]
 }

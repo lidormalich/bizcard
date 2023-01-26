@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile';
 import NewCardCMP from './components/NewCard/NewCardCMP';
 import CreateCard from './components/NewCard/CreateCard';
 import ShowAllCards from './components/ShowAllCards/ShowAllCards';
+import UserMyCards from './components/UserMyCards';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/Newcard' element={<NewCardCMP />} />
           <Route path='/Newcardcmp' element={<CreateCard />} />
           <Route path='/Cards' element={<ShowAllCards />} />
+          <Route path='/MyCard' element={<UserMyCards />} />
 
           {/* <Route path='/login' element={<Login setIsLogIn={setIsLogIn} />} />
             <Route path='/home' element={<Home setIsLogIn={setIsLogIn} />} />
