@@ -13,7 +13,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = () => {
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/home">
                     {/* <h5 className="display-5">BizCard</h5> */}
-                    <img src="../media/bizcardLogo.png" alt="biz card logo" />
+                    <img src="https://github.com/lidormalich/bizcard/blob/master/src/media/bizcardLogo.png?raw=true" height={100} alt="biz card logo" />
                 </NavLink>
                 <button
                     className="navbar-toggler"
