@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Admin",
+            "email": "admin@gmail.com",
+            "password": "adminadmin",
+            "isAdmin": true
+        },
+        {
+            "email": "david@gmail.com",
+            "password": "12345678",
+            "name": "David Bozaglo",
+            "isAdmin": false,
+            "id": 2
+        }
+    ]
+}
