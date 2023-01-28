@@ -18,12 +18,13 @@
   ],
   "cards": [
     {
+      "companyName": "STRIJD khhdjadjk",
       "id": 1,
       "name": "temp",
       "image": "",
       "userId": 1,
       "description": "string",
-      "companyEmail": "string",
+      "companyEmail": "STRIJD khhdjadjk",
       "address": "string",
       "phone": "0555555555"
     },
