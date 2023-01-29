@@ -7,10 +7,10 @@ import { errorMessage, successMessage as successMsg } from "../services/Feedback
 import { addUser } from "../services/usersservices";
 interface RegisterProps {
     // isLogin: boolean;
-    // setIsLogIn: Function;
+    setIsLogIn: Function;
 }
 
-const Register: FunctionComponent<RegisterProps> = () => {
+const Register: FunctionComponent<RegisterProps> = ({ setIsLogIn }) => {
     let navigate = useNavigate();
 
     let formik = useFormik({
@@ -25,9 +25,10 @@ const Register: FunctionComponent<RegisterProps> = () => {
         onSubmit: (values: UserInterface) => {
             addUser({ ...values })
                 .then((res) => {
+                    setIsLogIn(true);
                     sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
                     successMsg("You registered successfully!");
-                    navigate("/card");
+                    navigate("/home");
                 })
                 .catch((err) => console.log(err));
             // console.log(values);

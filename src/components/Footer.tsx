@@ -13,13 +13,13 @@ const Footer: FunctionComponent<FooterProps> = () => {
                 <a className="text-white" href="https://lidormalich.netlify.app">lidormalich.netlify.app</a>
                 <section className="mb-4">
                     <a className="btn btn-outline-light btn-floating m-1" href="https://wa.me/972526761204" role="button">
-                        <img src="img/whatsapp.png" className="smallSocialIcon" alt="" /></a>
+                        <img src="../media/whatsapp.png" className="smallSocialIcon" alt="" /></a>
 
                     <a className="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/lidormalich/"
-                        role="button"><img src="img/linkedin.png" className="smallSocialIcon" alt="" /></a>
+                        role="button"><img src="../media/linkedin.png" className="smallSocialIcon" alt="" /></a>
 
                     <a className="btn btn-outline-light btn-floating m-1" href="https://github.com/lidormalich"
-                        role="button"><img src="img/github.png" className="smallSocialIcon" alt="" /></a>
+                        role="button"><img src="../media/github.png" className="smallSocialIcon" alt="" /></a>
                 </section>
             </div>
         </footer>

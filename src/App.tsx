@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home';
-import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBarCMP from './components/NavBarCMP';
@@ -13,39 +12,61 @@ import Profile from './components/Profile/Profile';
 import NewCardCMP from './components/NewCard/NewCardCMP';
 import CreateCard from './components/NewCard/CreateCard';
 import ShowAllCards from './components/ShowAllCards/ShowAllCards';
-import UserMyCards from './components/UserMyCards';
+import UserInterface from '../src/interface/UserInterface';
+import { getUserInfo } from './services/usersservices';
+import UserMyCards from './components/UserMyCards/UserMyCards';
+import Footer from './components/Footer';
+
+
+
+// let isLogin: boolean = false;
+
+
+export let isLoginGlobal = React.createContext<boolean>(false);
 
 
 function App() {
+  let [isLogin, setIsLogIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    try {
+      let id = JSON.parse(sessionStorage.getItem("userData")!).userID;
+      getUserInfo(id).then((res) => { setIsLogIn(res.data) });
+      setIsLogIn(true);
+
+    } catch (error) {
+      setIsLogIn(false);
+    }
+    // (!JSON.parse(sessionStorage.getItem("userData")!).userID) {
+    //   setIsLogIn(false);
+    // } else {
+
+    // }
+  }, []);
   return (
     <div className="App">
-
       <ToastContainer />
 
       <Router>
-        <NavBarCMP />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/signin' element={<Login />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/Newcard' element={<NewCardCMP />} />
-          <Route path='/Newcardcmp' element={<CreateCard />} />
-          <Route path='/Cards' element={<ShowAllCards />} />
-          <Route path='/MyCard' element={<UserMyCards />} />
-
-          {/* <Route path='/login' element={<Login setIsLogIn={setIsLogIn} />} />
-            <Route path='/home' element={<Home setIsLogIn={setIsLogIn} />} />
-            <Route path='/cart' element={<Cart setIsLogIn={setIsLogIn} />} />
-            <Route path='/Products' element={<Products setIsLogIn={setIsLogIn} />} />
-            <Route path='/profile' element={<Profile setIsLogIn={setIsLogIn} />} /> */}
-        </Routes>
+        <isLoginGlobal.Provider value={isLogin}>
+          <NavBarCMP setIsLogIn={setIsLogIn} />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/register' element={<Register setIsLogIn={setIsLogIn} />} />
+            <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/Newcard' element={<NewCardCMP />} />
+            <Route path='/Newcardcmp' element={<CreateCard />} />
+            <Route path='/Cards' element={<ShowAllCards />} />
+            <Route path='/MyCards' element={<UserMyCards />} />
+          </Routes>
+        </isLoginGlobal.Provider>
       </Router>
-      {/* <footer>
-      </footer> */}
-      {/* <Footer /> */}
-
+      <footer>
+      </footer>
+      <Footer />
     </div>
 
   );

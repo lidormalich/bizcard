@@ -1,7 +1,9 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
+import { isLoginGlobal } from "../../App";
 import UserInterface from "../../interface/UserInterface";
 import { getAllUserCards } from "../../services/cardServices";
 import { getUserInfo } from "../../services/usersservices";
+import NotHaveAccess from "../Extra/NotHaveAccess/NotHaveAccess";
 import "./Profile.css";
 
 interface ProfileProps {
@@ -9,29 +11,33 @@ interface ProfileProps {
 }
 
 const Profile: FunctionComponent<ProfileProps> = () => {
-
-    let userId: number = JSON.parse(
-        sessionStorage.getItem("userData") as string
-    ).userID;
     let length: number = 0;
+    let isLogin = useContext<boolean>(isLoginGlobal);
     let [user, setUser] = useState<UserInterface>({
         id: 0,
         name: "string",
         email: "string",
         password: "string",
     });
-
     useEffect(() => {
-        getUserInfo(userId).then((res) => {
-            console.log(res.data);
-            setUser(res.data)
-        });
-        getAllUserCards(userId).then((res) => length = res.data.length);
+        try {
+            let userId: number = JSON.parse(
+                sessionStorage.getItem("userData") as string
+            ).userID;
+            getUserInfo(userId).then((res) => {
+                console.log(res.data);
+                setUser(res.data)
+            });
+            getAllUserCards(userId).then((res) => length = res.data.length);
+        } catch (error) {
+            console.log(error);
+        }
+
 
     }, []);
 
     return (<>
-        <div className="container my-3">
+        {isLogin ? <><div className="container my-3">
             <div className="card ">
                 {user.image != null ? <img src={user.image} alt={user.name} className="rounded mx-auto d-block my-3" style={{ width: "15rem" }} /> : <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="ANONYMOUS USER" className="rounded mx-auto d-block my-3" style={{ width: "17em" }} />}
                 <h1>{user.name}</h1>
@@ -45,7 +51,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
                 </span>
                 <p><button>Contact</button></p>
             </div>
-        </div>
+        </div></> : (<NotHaveAccess />)}
     </>);
 }
 

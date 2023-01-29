@@ -1,13 +1,14 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { isLoginGlobal } from "../App";
 
 interface NavBarCMPProps {
-
+    setIsLogIn: Function;
 }
 
-const NavBarCMP: FunctionComponent<NavBarCMPProps> = () => {
+const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
     let navigate = useNavigate();
-    let isLogin: boolean = true;
+    let isLogin = useContext<boolean>(isLoginGlobal);
     return (<div className="bg-dark text-light">
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,38 +35,45 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = () => {
                                 About
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        {!isLogin && <><li className="nav-item">
                             <NavLink className="nav-link" to="/Signin">
                                 Sign-In
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/register">
+                                    Register
+                                </NavLink>
+                            </li></>}
+                        {isLogin && <><li className="nav-item">
                             <NavLink className="nav-link" to="/Newcard">
                                 New Card
                             </NavLink>
-                        </li>
-                        <li className="nav-item">
+                        </li></>}
+                        {isLogin && <><li className="nav-item">
                             <NavLink className="nav-link" to="/MyCard">
                                 My Card
                             </NavLink>
-                        </li>
+                        </li></>}
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/Cards">
                                 All Cards
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/Profile">
-                                Profile
-                            </NavLink>
-                        </li>
+                        {isLogin && <>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/Profile">
+                                    Profile
+                                </NavLink>
+                            </li>
+                        </>}
                     </ul>
                     {isLogin && <form className="d-flex" role="search">
                         <button className="btn btn-outline-success" onClick={() => {
                             sessionStorage.removeItem("userData");
                             navigate("/");
 
-                            // setIsLogIn(false);
+                            setIsLogIn(false);
                         }}>Logout</button>
                     </form>}
                 </div>
