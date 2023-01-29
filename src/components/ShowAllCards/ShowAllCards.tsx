@@ -8,12 +8,11 @@ interface ShowAllCardsProps {
 }
 
 const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
-    // let allCard: Card[] = [];
-    let [allCard, setProducts] = useState<Card[]>([]);
+    let [allCard, setAllCard] = useState<Card[]>([]);
 
     useEffect(() => {
         getAllCard().then((res) => {
-            setProducts(res.data);
+            setAllCard(res.data);
         }).catch((e) => console.log(e))
     }, []);
 

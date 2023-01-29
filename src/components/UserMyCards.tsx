@@ -7,19 +7,12 @@ interface UserMyCardsProps {
 }
 
 const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
-    let [allCard, setProducts] = useState<Card[]>([]);
+    let [allCard, setAllCard] = useState<Card[]>([]);
     let userId: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
     useEffect(() => {
-        console.log("id");
-
-        console.log(userId);
-
         getAllUserCards(userId).then((res) => {
-            console.log("hare");
 
-            console.log(res.data);
-
-            setProducts(res.data);
+            setAllCard(res.data);
         }).catch((e) => console.log(e))
     }, []);
     return (<>

@@ -14,7 +14,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = () => {
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/home">
                     {/* <h5 className="display-5">BizCard</h5> */}
-                    <img src="https://github.com/lidormalich/bizcard/blob/master/src/media/bizcardLogo.png?raw=true" height={50} alt="biz card logo" />
+                    <img src="https://github.com/lidormalich/bizcard/blob/master/src/media/bizcardLogo3.png?raw=true" height={50} alt="biz card logo" />
                 </NavLink>
                 <button
                     className="navbar-toggler"
@@ -64,6 +64,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = () => {
                         <button className="btn btn-outline-success" onClick={() => {
                             sessionStorage.removeItem("userData");
                             navigate("/");
+
                             // setIsLogIn(false);
                         }}>Logout</button>
                     </form>}
