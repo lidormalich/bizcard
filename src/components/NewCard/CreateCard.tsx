@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { isLoginGlobal } from "../../App";
 import Card from "../../interface/Card";
@@ -12,13 +13,18 @@ interface CreateCardProps {
 
 const CreateCard: FunctionComponent<CreateCardProps> = () => {
     let isLogin = useContext<boolean>(isLoginGlobal);
+    let navigate = useNavigate();
+    let [imageIcon, setImageIcon] = useState<string>("");
 
+    useEffect(() => {
+        // refresh
+    }, [imageIcon]);
     let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
     let formik = useFormik({
         initialValues: {
             companyName: "",
             companyEmail: "",
-            image: "",
+            image: imageIcon,
             userId: userID,
             description: "",
             address: "",
@@ -37,9 +43,8 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
         onSubmit: (values: Card) => {
             addCard({ ...values })
                 .then((res) => {
-                    // sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
-                    successMessage("You registered successfully!");
-                    // navigate("/card");
+                    successMessage("You add card successfully!");
+                    navigate("/cards");
                 })
                 .catch((err) => console.log(err));
             console.log(values);
@@ -49,97 +54,107 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
     return (
         <>
             {!isLogin ? <NotHaveAccess /> : (
-                <div className="container mt-3 col-md-4 text-center">
-                    <h3 className="display-3">Add card</h3>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="floatingInputName"
-                                placeholder="Name PLSSSSS"
-                                name="companyName"
-                                onChange={formik.handleChange}
-                                value={formik.values.companyName}
-                                onBlur={formik.handleBlur}
-                            />
-                            <label htmlFor="floatingInputName">Company Name</label>
-                            {formik.touched.companyName && formik.errors.companyName && (
-                                <p className="text-danger">{formik.errors.companyName}</p>
-                            )}
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-7">
+                            <img src={imageIcon} height="450" alt="" />
                         </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="floatingDescription"
-                                placeholder="description"
-                                name="description"
-                                onChange={formik.handleChange}
-                                value={formik.values.description}
-                                onBlur={formik.handleBlur}
-                            />
-                            <label htmlFor="floatingDescription">description</label>
-                            {formik.touched.description && formik.errors.description && (
-                                <p className="text-danger">{formik.errors.description}</p>
-                            )}
+                        <div className=" col-md-5">
+                            <div className="container mt-3 col-md-4 text-center">
+                                <h3 className="display-3">Add card</h3>
+                                <form onSubmit={formik.handleSubmit}>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="floatingInputName"
+                                            placeholder="Name PLSSSSS"
+                                            name="companyName"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.companyName}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                        <label htmlFor="floatingInputName">Company Name</label>
+                                        {formik.touched.companyName && formik.errors.companyName && (
+                                            <p className="text-danger">{formik.errors.companyName}</p>
+                                        )}
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="floatingDescription"
+                                            placeholder="description"
+                                            name="description"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.description}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                        <label htmlFor="floatingDescription">description</label>
+                                        {formik.touched.description && formik.errors.description && (
+                                            <p className="text-danger">{formik.errors.description}</p>
+                                        )}
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="floatingInputAddress"
+                                            placeholder="address plsssss"
+                                            name="address"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.address}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                        <label htmlFor="floatingInputAddress">address</label>
+                                        {formik.touched.address && formik.errors.address && (
+                                            <p className="text-danger">{formik.errors.address}</p>
+                                        )}
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="tel"
+                                            className="form-control"
+                                            id="floatingPhone"
+                                            placeholder="phone"
+                                            name="phone"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.phone}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                        <label htmlFor="floatingPhone">phone</label>
+                                        {formik.touched.phone && formik.errors.phone && (
+                                            <p className="text-danger">{formik.errors.phone}</p>
+                                        )}
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="floatingImage"
+                                            placeholder="image"
+                                            name="image"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.image}
+                                            onBlur={formik.handleBlur}
+
+                                        />
+                                        <label htmlFor="floatingImage">image</label>
+                                        {formik.touched.image && formik.errors.image && (
+                                            <p className="text-danger">{formik.errors.image}</p>
+                                        )}
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-secondary w-100 my-3"
+                                        disabled={!formik.dirty || !formik.isValid}
+                                    >
+                                        <i className="fa-solid fa-plus text-white"></i> Add
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="floatingInputAddress"
-                                placeholder="address plsssss"
-                                name="address"
-                                onChange={formik.handleChange}
-                                value={formik.values.address}
-                                onBlur={formik.handleBlur}
-                            />
-                            <label htmlFor="floatingInputAddress">address</label>
-                            {formik.touched.address && formik.errors.address && (
-                                <p className="text-danger">{formik.errors.address}</p>
-                            )}
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="tel"
-                                className="form-control"
-                                id="floatingPhone"
-                                placeholder="phone"
-                                name="phone"
-                                onChange={formik.handleChange}
-                                value={formik.values.phone}
-                                onBlur={formik.handleBlur}
-                            />
-                            <label htmlFor="floatingPhone">phone</label>
-                            {formik.touched.phone && formik.errors.phone && (
-                                <p className="text-danger">{formik.errors.phone}</p>
-                            )}
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="floatingImage"
-                                placeholder="image"
-                                name="image"
-                                onChange={formik.handleChange}
-                                value={formik.values.image}
-                                onBlur={formik.handleBlur}
-                            />
-                            <label htmlFor="floatingImage">image</label>
-                            {formik.touched.image && formik.errors.image && (
-                                <p className="text-danger">{formik.errors.image}</p>
-                            )}
-                        </div>
-                        <button
-                            type="submit"
-                            className="btn btn-secondary w-100 my-3"
-                            disabled={!formik.dirty || !formik.isValid}
-                        >
-                            <i className="fa-solid fa-plus text-white"></i> Add
-                        </button>
-                    </form>
+                    </div>
                 </div>
             )}
         </>

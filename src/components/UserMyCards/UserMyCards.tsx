@@ -1,5 +1,6 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { isLoginGlobal } from "../../App";
 import Card from "../../interface/Card";
 import { getAllUserCards } from "../../services/cardServices";
@@ -13,12 +14,14 @@ interface UserMyCardsProps {
 const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
     let [allCard, setAllCard] = useState<Card[]>([]);
     let isLogin = useContext<boolean>(isLoginGlobal);
+    let navigat = useNavigate();
 
     let userId: number = -1;
     useEffect(() => {
         try {
             userId = JSON.parse(sessionStorage.getItem("userData") as string).userID;
             getAllUserCards(userId).then((res) => {
+
                 setAllCard(res.data);
             }).catch((e) => console.log(e));
         } catch (error) {
@@ -37,75 +40,7 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
                 //     console.log(event.target);
                 // }}
                 /> */}
-                https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian.png<div className="slide-container">
 
-
-
-                    <div className="wrapper">
-                        <div className="clash-card goblin">
-                            <div className="clash-card__image clash-card__image--goblin">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/goblin.png" alt="goblin" />
-                            </div>
-                            <div className="clash-card__level clash-card__level--goblin">Level 5</div>
-                            <div className="clash-card__unit-name">The Goblin</div>
-                            <div className="clash-card__unit-description">
-                                These pesky little creatures only have eyes for one thing: LOOT! They are faster than a Spring Trap, and their hunger for resources is limitless.
-                            </div>
-
-                            <div className="clash-card__unit-stats clash-card__unit-stats--goblin clearfix">
-                                <div className="one-third">
-                                    <div className="stat">30<sup>S</sup></div>
-                                    <div className="stat-value">Training</div>
-                                </div>
-
-                                <div className="one-third">
-                                    <div className="stat">32</div>
-                                    <div className="stat-value">Speed</div>
-                                </div>
-
-                                <div className="one-third no-border">
-                                    <div className="stat">100</div>
-                                    <div className="stat-value">Cost</div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div className="wrapper">
-                        <div className="clash-card wizard">
-                            <div className="clash-card__image clash-card__image--wizard">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard.png" alt="wizard" />
-                            </div>
-                            <div className="clash-card__level clash-card__level--wizard">Level 6</div>
-                            <div className="clash-card__unit-name">The Wizard</div>
-                            <div className="clash-card__unit-description">
-                                The Wizard is a terrifying presence on the battlefield. Pair him up with some of his fellows and cast concentrated blasts of destruction on anything, land or sky!
-                            </div>
-
-                            <div className="clash-card__unit-stats clash-card__unit-stats--wizard clearfix">
-                                <div className="one-third">
-                                    <div className="stat">5<sup>M</sup></div>
-                                    <div className="stat-value">Training</div>
-                                </div>
-
-                                <div className="one-third">
-                                    <div className="stat">16</div>
-                                    <div className="stat-value">Speed</div>
-                                </div>
-
-                                <div className="one-third no-border">
-                                    <div className="stat">4000</div>
-                                    <div className="stat-value">Cost</div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
                 {allCard.length ? allCard.map((cardItem: Card) => (
                     <div className="display" key={cardItem.id}>
                         <div className="display-item">
@@ -128,7 +63,7 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
                                     </div>
                                     <div className="front-bottom">
                                         <div>
-
+                                            <i className="fa-solid fa-pen-to-square"></i>
                                             <h3>{cardItem.companyName}</h3>
                                             <span>Fascism Foiler</span>
                                         </div>
@@ -151,14 +86,26 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
                                         </div>
                                         <div className="social">
                                             <div className="sms">
-                                                <div className="sm twitter">
-                                                    <i className="fa-brands fa-twitter"></i>
+
+                                                <div onClick={() => {
+                                                    window.open(`https://www.google.com/maps/search/?api=1&query=${cardItem.address}`)
+                                                }}>
+                                                    <i className="fa-solid fa-map"></i>
                                                 </div>
-                                                <div className="sm facebook">
-                                                    <i className="fa-brands fa-facebook"></i>
+                                                <div onClick={() => {
+                                                    window.open(`tel:${cardItem.phone}`)
+                                                }}>
+                                                    <i className="fa-solid fa-phone"></i>
                                                 </div>
-                                                <div className="sm pinterest">
-                                                    <i className="fa-brands fa-pinterest"></i>
+                                                <div onClick={() => {
+                                                    window.open(`mailto:${cardItem.companyEmail}`)
+                                                }}>
+                                                    <i className="fa-solid fa-at"></i>
+                                                </div>
+                                                <div onClick={() => {
+                                                    navigat(`/MyCards/${cardItem.id}`)
+                                                }}>
+                                                    <i className="fa-solid fa-pen-to-square"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -174,8 +121,9 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
                             <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                </>}
-            </div>
+                </>
+                }
+            </div >
         )}
     </>);
 }

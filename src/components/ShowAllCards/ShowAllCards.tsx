@@ -62,14 +62,20 @@ const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
                                     </div>
                                     <div className="social">
                                         <div className="sms">
-                                            <div className="sm twitter">
-                                                <i className="fa-brands fa-twitter"></i>
+                                            <div onClick={() => {
+                                                window.open(`https://www.google.com/maps/search/?api=1&query=${cardItem.address}`)
+                                            }}>
+                                                <i className="fa-solid fa-map"></i>
                                             </div>
-                                            <div className="sm facebook">
-                                                <i className="fa-brands fa-facebook"></i>
+                                            <div onClick={() => {
+                                                window.open(`tel:${cardItem.phone}`)
+                                            }}>
+                                                <i className="fa-solid fa-phone"></i>
                                             </div>
-                                            <div className="sm pinterest">
-                                                <i className="fa-brands fa-pinterest"></i>
+                                            <div onClick={() => {
+                                                window.open(`mailto:${cardItem.companyEmail}`)
+                                            }}>
+                                                <i className="fa-solid fa-at"></i>
                                             </div>
                                         </div>
                                     </div>

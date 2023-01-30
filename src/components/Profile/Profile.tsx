@@ -11,24 +11,30 @@ interface ProfileProps {
 }
 
 const Profile: FunctionComponent<ProfileProps> = () => {
-    let length: number = 0;
+    let [length, setLength] = useState<number>(0);
     let isLogin = useContext<boolean>(isLoginGlobal);
     let [user, setUser] = useState<UserInterface>({
         id: 0,
         name: "string",
         email: "string",
         password: "string",
+        location: "string",
     });
     useEffect(() => {
+
+
         try {
             let userId: number = JSON.parse(
                 sessionStorage.getItem("userData") as string
             ).userID;
+
+
+            getAllUserCards(userId).then((res) => setLength(res.data.length));
+
             getUserInfo(userId).then((res) => {
                 console.log(res.data);
                 setUser(res.data)
             });
-            getAllUserCards(userId).then((res) => length = res.data.length);
         } catch (error) {
             console.log(error);
         }
@@ -37,21 +43,31 @@ const Profile: FunctionComponent<ProfileProps> = () => {
     }, []);
 
     return (<>
-        {isLogin ? <><div className="container my-3">
-            <div className="card ">
-                {user.image != null ? <img src={user.image} alt={user.name} className="rounded mx-auto d-block my-3" style={{ width: "15rem" }} /> : <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="ANONYMOUS USER" className="rounded mx-auto d-block my-3" style={{ width: "17em" }} />}
-                <h1>{user.name}</h1>
-                {user.isBusiness ? <h5 className="title"> User type: Business</h5> : <h5 className="title"> User type: Regular User  </h5>}
-                <p>You have {length} cards</p>
-                <span>
-                    <a href="/" ><i className="fa fa-dribbble"></i></a>
-                    <a href="/"><i className="fa fa-twitter"></i></a>
-                    <a href="/"><i className="fa fa-linkedin"></i></a>
-                    <a href="/"><i className="fa fa-facebook"></i></a>
-                </span>
-                <p><button>Contact</button></p>
+        {isLogin ? <>
+            <div className="container my-3">
+                <div className="card-container mx-auto">
+                    <span className="pro">{user.isBusiness ? "Business" : "Regular"}</span>
+                    {user.image != null ? <img src={user.image} alt={user.name} className="round mx-auto d-block my-3" style={{ width: "15rem" }} /> : <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="ANONYMOUS USER" className="round mx-auto d-block my-3" style={{ width: "17em" }} />}
+                    <h3>{user.name}</h3>
+                    <h6>{user.location}</h6>
+                    <p>User interface designer and <br /> front-end developer</p>
+                    <div className="buttons mx-2 my-3">
+
+                        <div className=" button primary ghost my-3">
+                            You have {length} cards
+                        </div>
+                        <button className="primary" onClick={() => console.log("a")
+                        }>
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div className="by">
+                        <p>creat by lidor</p>
+                    </div>
+                </div>
+
             </div>
-        </div></> : (<NotHaveAccess />)}
+        </> : (<NotHaveAccess />)}
     </>);
 }
 

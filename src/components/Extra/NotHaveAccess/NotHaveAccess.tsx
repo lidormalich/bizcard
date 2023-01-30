@@ -20,7 +20,7 @@ const NotHaveAccess: FunctionComponent<NotHaveAccessProps> = () => {
         {/* <div className="forbidden">
             <h2> <i className="fa fa-exclamation-triangle logo">  </i> 403 Forbidden </h2>
         </div> */}
-        <Link to="/login">Login</Link>
+        <Link to="/login" >You want to see that page? Try to login into system</Link>
     </>);
 }
 

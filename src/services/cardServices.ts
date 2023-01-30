@@ -3,9 +3,7 @@ import Card from "../interface/Card";
 
 let api = process.env.REACT_APP_API + "/cards" || "";
 
-// export function checkUser(usertoCheck: Card) {
-//     return axios.get(`${api}?email=${usertoCheck.email}&password=${usertoCheck.password}`);
-// }
+
 export function getSpicificCard(cardID: Number) {
     return axios.get(`${api}/${cardID}`);
 }
@@ -17,6 +15,9 @@ export function getAllUserCards(userId: number) {
 }
 export function addCard(cardToAdd: Card) {
     return axios.post(api, cardToAdd);
+}
+export function updateCard(id: number, cradToUpdate: Card) {
+    return axios.put(`${api}/${id}`, cradToUpdate)
 }
 export function deleteCard() {
     return axios.delete(api);

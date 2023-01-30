@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Admin",
+      "name": "Admin Lidor MAlich",
       "email": "admin@gmail.com",
       "password": "adminadmin",
       "isBusiness": true,
@@ -29,12 +29,11 @@
       "phone": "0555555555"
     },
     {
-      "companyName": "לידור מליח",
+      "companyName": "מנחם בגין כרטיס",
+      "companyEmail": "hime toren 10 dira 6",
       "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/ab689b07-6805-4b1f-95af-9203ba55b268.__CR0,0,300,400_PT0_SX300_V1___.jpg",
-      "userId": 1,
       "description": "Brand\tLogitech G Color\tMint",
       "address": "hime toren 10 dira 6",
-      "companyEmail": "hime toren 10 dira 6",
       "phone": "+972526761204",
       "id": 2
     },
@@ -47,6 +46,16 @@
       "phone": "00000000000000",
       "companyEmail": "lidormalich@gmail.com",
       "id": 3
+    },
+    {
+      "companyName": "לידור מליח",
+      "companyEmail": "",
+      "image": "https://m.media-amazon.com/images/I/61PRhYizhGL._AC_SL1500_.jpg",
+      "userId": 1,
+      "description": "punptu",
+      "address": "hime toren 10 dira 6",
+      "phone": "+972526761204",
+      "id": 4
     }
   ]
 }

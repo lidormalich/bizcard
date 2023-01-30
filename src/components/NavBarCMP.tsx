@@ -51,7 +51,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
                             </NavLink>
                         </li></>}
                         {isLogin && <><li className="nav-item">
-                            <NavLink className="nav-link" to="/MyCard">
+                            <NavLink className="nav-link" to="/MyCards">
                                 My Card
                             </NavLink>
                         </li></>}

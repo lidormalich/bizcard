@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home';
 import { ToastContainer } from 'react-toastify';
@@ -12,10 +11,11 @@ import Profile from './components/Profile/Profile';
 import NewCardCMP from './components/NewCard/NewCardCMP';
 import CreateCard from './components/NewCard/CreateCard';
 import ShowAllCards from './components/ShowAllCards/ShowAllCards';
-import UserInterface from '../src/interface/UserInterface';
 import { getUserInfo } from './services/usersservices';
 import UserMyCards from './components/UserMyCards/UserMyCards';
 import Footer from './components/Footer';
+import UpdateCard from './components/UpdateCard';
+import Pnf from './components/Extra/PageNotFound/Pnf';
 
 
 
@@ -61,12 +61,15 @@ function App() {
             <Route path='/Newcardcmp' element={<CreateCard />} />
             <Route path='/Cards' element={<ShowAllCards />} />
             <Route path='/MyCards' element={<UserMyCards />} />
+            <Route path='/MyCards/:id' element={<UpdateCard />} />
+            <Route path='*' element={<Pnf />} />
           </Routes>
         </isLoginGlobal.Provider>
       </Router>
-      <footer>
-      </footer>
-      <Footer />
+      {/* <footer>
+        <Footer />
+      </footer> */}
+
     </div>
 
   );

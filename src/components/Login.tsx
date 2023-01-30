@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { FunctionComponent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { date } from "yup/lib/locale";
 import UserInterface from "../interface/UserInterface";
 import { errorMessage, successMessage } from "../services/FeedbackService";
 import { checkUser } from "../services/usersservices";
@@ -24,7 +23,7 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn }) => {
                 if (res.data.length) {
                     setIsLogIn(true);
                     sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isBusiness, userID: res.data[0].id }));
-                    successMessage("You Loged-In :)");
+                    successMessage("You are log-in :)");
                     navigate('/home');
                 }
                 else { errorMessage("Wrong email or password"); navigate('/login'); }
@@ -87,7 +86,6 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn }) => {
                 </div>
             </div>
         </div>
-
     </>);
 }
 
