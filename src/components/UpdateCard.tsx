@@ -28,24 +28,60 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         phone: ""
     });
     useEffect(() => {
-        try {
-            getSpicificCard(parseInt(id as string)).then((res) => {
-                setCard(res.data);
-                console.log("card id");
-                console.log(card.id);
-                getAllUserCards(userID).then((res) => {
-                    for (let card of res.data) {
-                        if (card.userId == userID && card.name.length > 1) {
-                            setIsmyUser(true);
-                        }
-                    }
-                })
-            }).catch((e) => console.log(e));
-        } catch (error) {
-            console.log(error);
+        // try {
+        //     getSpicificCard(parseInt(id as string)).then((res) => {
+        //         // console.log(r); console.log(r.data); console.log("siso");
+        //         setCard(res.data)
+        //     }).catch((e) => console.log(e));
 
-            <Pnf />
-        }
+        //     //888888888888888888888888888888888888 
+        //     getSpicificCard(parseInt(id as string)).then((res) => {
+        //         setCard(res.data);
+        //         // console.log("card id");
+        //         // console.log(card.id);
+
+        //     }).catch((e) => { console.log(e); (<Pnf />) });
+        //     getAllUserCards(userID).then((res) => {
+        //         console.log("User ID1");
+        //         console.log(userID);
+
+        //         for (let cardItem of res.data) {
+        //             console.log(res.data);
+
+        //             // console.log(cardItem.name.length);
+        //             console.log(`card is`);
+        //             console.log(cardItem);
+        //             console.log(`user id ${userID} and serch is ${cardItem.userId}`);
+
+        //             // צריך לבדוק למה מקבלים את האובייקט ששלחתי
+
+        //             if (cardItem.userId === userID) {
+        //                 console.log("trueee");
+
+        //                 setIsmyUser(true);
+        //                 break;
+        //             }
+        //         }
+        //     }).catch((e) => { console.log(e); (<Pnf />) })
+        // } catch (error) {
+        //     console.log(error); <Pnf />
+        // }
+
+        getSpicificCard(parseInt(id as string)).then((res) => { setCard(res.data); setIsmyUser(false) }).catch((e) => {
+            console.log(e); console.log("not found 404 lidor");
+            console.log(userID);
+        });
+        getAllUserCards(userID).then((res) => {
+            for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i].userId == userID) {
+                    if (res.data[i].id == card.id) {
+                        setIsmyUser(true); console.log("IS MY USER");
+                    }
+                }
+            }
+
+
+        }).catch((e) => { console.log(e); });
 
     }, []);
 
@@ -57,6 +93,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             image: card.image,
             description: card.description,
             address: card.address,
+            userId: userID,
             phone: card.phone
         },
         enableReinitialize: true,
@@ -68,7 +105,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             phone: yup.string().required().min(7),
         }),
         onSubmit: (values: Card) => {
-            updateCard(parseInt(id as string), values).then((res) => navigat("/mycards")).catch((e) => console.log(e));
+            updateCard(parseInt(id as string), { ...values }).then((res) => navigat("/mycards")).catch((e) => console.log(e));
         }
 
     })
@@ -166,10 +203,13 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
                         className="btn btn-secondary w-100 my-3"
                         disabled={!formik.dirty || !formik.isValid}
                     >
-                        <i className="fa-solid fa-plus text-white"></i> Add
+                        <i className="fa-solid fa-plus text-white"></i> Save
                     </button>
                 </form>
-            </div></>) : <h1 className="display-1">its by anither user... cant load the data</h1>}
+            </div></>) : <>
+            <h5 className="display-5">it's save by another user... we cannot load the data...</h5>
+            <Pnf />
+        </>}
     </>);
 }
 

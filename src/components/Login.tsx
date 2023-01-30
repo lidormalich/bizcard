@@ -24,9 +24,9 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn }) => {
                     setIsLogIn(true);
                     sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isBusiness, userID: res.data[0].id }));
                     successMessage("You are log-in :)");
-                    navigate('/home');
+                    navigate('/mycards');
                 }
-                else { errorMessage("Wrong email or password"); navigate('/login'); }
+                else { errorMessage("Wrong email or password"); navigate('/Signin'); }
             }).catch((e) => { errorMessage("Wrong email or password"); console.log(e); }
             );
         }

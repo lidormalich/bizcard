@@ -14,19 +14,27 @@
       "name": "David Bozaglo",
       "isBusiness": false,
       "id": 2
+    },
+    {
+      "email": "demomail@gmail.com",
+      "password": "123456789",
+      "name": "Demo",
+      "isBusiness": true,
+      "image": "https://m.media-amazon.com/images/I/61IiCJ7QggS._AC_SL1500_.jpg",
+      "location": "israel",
+      "id": 3
     }
   ],
   "cards": [
     {
       "companyName": "STRIJD khhdjadjk",
-      "id": 1,
-      "name": "temp",
-      "image": "",
-      "userId": 1,
-      "description": "string",
       "companyEmail": "STRIJD khhdjadjk",
+      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/ab689b07-6805-4b1f-95af-9203ba55b268.__CR0,0,300,400_PT0_SX300_V1___.jpg",
+      "description": "string",
       "address": "string",
-      "phone": "0555555555"
+      "userId": 1,
+      "phone": "0555555555",
+      "id": 1
     },
     {
       "companyName": "מנחם בגין כרטיס",
@@ -35,7 +43,8 @@
       "description": "Brand\tLogitech G Color\tMint",
       "address": "hime toren 10 dira 6",
       "phone": "+972526761204",
-      "id": 2
+      "id": 2,
+      "userId": 2
     },
     {
       "companyName": "King BOB",
@@ -51,11 +60,21 @@
       "companyName": "לידור מליח",
       "companyEmail": "",
       "image": "https://m.media-amazon.com/images/I/61PRhYizhGL._AC_SL1500_.jpg",
-      "userId": 1,
+      "userId": 5,
       "description": "punptu",
       "address": "hime toren 10 dira 6",
       "phone": "+972526761204",
       "id": 4
+    },
+    {
+      "companyName": "Test by Demo",
+      "companyEmail": "",
+      "image": "https://as2.ftcdn.net/v2/jpg/03/17/25/45/1000_F_317254576_lKDALRrvGoBr7gQSa1k4kJBx7O2D15dc.jpg",
+      "description": "no add1",
+      "address": "hime toren 10 dira 6",
+      "userId": 3,
+      "phone": "+972526761204",
+      "id": 5
     }
   ]
 }

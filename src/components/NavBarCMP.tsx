@@ -1,6 +1,7 @@
 import { FunctionComponent, useContext } from "react";
+import { Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import { isLoginGlobal } from "../App";
+import { isLoginGlobal, userNameGlobal } from "../App";
 
 interface NavBarCMPProps {
     setIsLogIn: Function;
@@ -9,11 +10,19 @@ interface NavBarCMPProps {
 const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
     let navigate = useNavigate();
     let isLogin = useContext<boolean>(isLoginGlobal);
+    let username = useContext<string>(userNameGlobal);
+
+
+    // useEffect(() => {
+    //     getUserInfo(1)
+    // }, []);
+
+
     return (<div className="bg-dark text-light">
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <NavLink className="navbar-brand" to="/home">
+                <NavLink className="navbar-brand" to="/">
                     {/* <h5 className="display-5">BizCard</h5> */}
                     <img src="https://github.com/lidormalich/bizcard/blob/master/src/media/bizcardLogo3.png?raw=true" height={50} alt="biz card logo" />
                 </NavLink>
@@ -68,14 +77,30 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
                             </li>
                         </>}
                     </ul>
-                    {isLogin && <form className="d-flex" role="search">
+                    {/* {isLogin && <form className="d-flex" role="search">
                         <button className="btn btn-outline-success" onClick={() => {
                             sessionStorage.removeItem("userData");
                             navigate("/");
 
                             setIsLogIn(false);
                         }}>Logout</button>
-                    </form>}
+                    </form>} */}
+                    {isLogin && <>
+                        <Nav className="me-5">
+                            <NavDropdown title={`Hi ${username}`} id="collasible-nav-dropdown" className="btn btn-outline-black">
+                                <NavDropdown.Item href="/profile">
+                                    Profile Info
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="/profile/edit">Edit Profile</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/" onClick={() => {
+                                    sessionStorage.removeItem("userData");
+                                    navigate("/");
+                                    setIsLogIn(false);
+                                }}>Logout
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav></>}
                 </div>
             </div>
         </nav>
