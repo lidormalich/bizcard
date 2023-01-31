@@ -23,6 +23,15 @@
       "image": "https://m.media-amazon.com/images/I/61IiCJ7QggS._AC_SL1500_.jpg",
       "location": "israel",
       "id": 3
+    },
+    {
+      "email": "fakemail@hhkhkad.com",
+      "password": "12345678",
+      "name": "לידור",
+      "isBusiness": true,
+      "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png",
+      "location": "israel",
+      "id": 4
     }
   ],
   "cards": [

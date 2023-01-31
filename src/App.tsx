@@ -52,6 +52,7 @@ function App() {
       });
     } catch (error) {
       setIsLogIn(false);
+      console.log(error);
     }
   }, []);
   return (
@@ -64,12 +65,12 @@ function App() {
         <isLoginGlobal.Provider value={isLogin}>
           <userNameGlobal.Provider value={username}>
             <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
-              <NavBarCMP setIsLogIn={setIsLogIn} />
+              <NavBarCMP setIsLogIn={setIsLogIn} username={username} />
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/profile/edit' element={<EditProfile />} />
-                <Route path='/register' element={<Register setIsLogIn={setIsLogIn} />} />
-                <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} />} />
+                <Route path='/register' element={<Register setIsLogIn={setIsLogIn} setUserName={setUserName} />} />
+                <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} setUserName={setUserName} />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/Newcard' element={<NewCardCMP />} />

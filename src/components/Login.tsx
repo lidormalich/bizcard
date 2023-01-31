@@ -8,9 +8,11 @@ import { checkUser } from "../services/usersservices";
 
 interface LoginProps {
     setIsLogIn: Function;
+    setUserName: Function;
+
 }
 
-const Login: FunctionComponent<LoginProps> = ({ setIsLogIn }) => {
+const Login: FunctionComponent<LoginProps> = ({ setIsLogIn, setUserName }) => {
     let navigate = useNavigate();
     let formik = useFormik({
         initialValues: { email: "", password: "" },
@@ -23,6 +25,7 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn }) => {
                 if (res.data.length) {
                     setIsLogIn(true);
                     sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isBusiness, userID: res.data[0].id }));
+                    setUserName(res.data[0].name);
                     successMessage("You are log-in :)");
                     navigate('/mycards');
                 }

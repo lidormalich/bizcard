@@ -1,25 +1,25 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useEffect } from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { isLoginGlobal, userNameGlobal } from "../App";
 
 interface NavBarCMPProps {
     setIsLogIn: Function;
+    username: string;
 }
 
-const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
+const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn, username }) => {
 
 
     let navigate = useNavigate();
     let isLogin = useContext<boolean>(isLoginGlobal);
-    let username = useContext<string>(userNameGlobal);
+    // let username = useContext<string>(userNameGlobal);
 
 
 
 
 
     return (<div className="bg-dark text-light">
-
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
@@ -81,6 +81,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
                     {isLogin && <>
                         <Nav className="me-5">
                             <NavDropdown title={`Hi ${username}`} id="collasible-nav-dropdown" className="btn btn-outline-black">
+                                {/* <NavDropdown title={`Hi`} id="collasible-nav-dropdown" className="btn btn-outline-black"> */}
                                 <NavDropdown.Item href="/profile">
                                     Profile Info
                                 </NavDropdown.Item>

@@ -7,6 +7,7 @@ import { getAllUserCards, getSpicificCard, updateCard } from "../services/cardSe
 import { isLoginGlobal } from "../App";
 import NotHaveAccess from "./Extra/NotHaveAccess/NotHaveAccess";
 import Pnf from "./Extra/PageNotFound/Pnf";
+import NotUuser from "./Extra/NotUuser/NotUuser";
 
 interface UpdateCardProps {
 
@@ -28,61 +29,17 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         phone: ""
     });
     useEffect(() => {
-        // try {
-        //     getSpicificCard(parseInt(id as string)).then((res) => {
-        //         // console.log(r); console.log(r.data); console.log("siso");
-        //         setCard(res.data)
-        //     }).catch((e) => console.log(e));
-
-        //     //888888888888888888888888888888888888 
-        //     getSpicificCard(parseInt(id as string)).then((res) => {
-        //         setCard(res.data);
-        //         // console.log("card id");
-        //         // console.log(card.id);
-
-        //     }).catch((e) => { console.log(e); (<Pnf />) });
-        //     getAllUserCards(userID).then((res) => {
-        //         console.log("User ID1");
-        //         console.log(userID);
-
-        //         for (let cardItem of res.data) {
-        //             console.log(res.data);
-
-        //             // console.log(cardItem.name.length);
-        //             console.log(`card is`);
-        //             console.log(cardItem);
-        //             console.log(`user id ${userID} and serch is ${cardItem.userId}`);
-
-        //             // צריך לבדוק למה מקבלים את האובייקט ששלחתי
-
-        //             if (cardItem.userId === userID) {
-        //                 console.log("trueee");
-
-        //                 setIsmyUser(true);
-        //                 break;
-        //             }
-        //         }
-        //     }).catch((e) => { console.log(e); (<Pnf />) })
-        // } catch (error) {
-        //     console.log(error); <Pnf />
-        // }
-
-        getSpicificCard(parseInt(id as string)).then((res) => { setCard(res.data); setIsmyUser(false) }).catch((e) => {
-            console.log(e); console.log("not found 404 lidor");
-            console.log(userID);
+        console.log(id);
+        getSpicificCard(parseInt(id as string)).then((res) => { setCard(res.data); }).catch((e) => {
+            console.log(e);
         });
         getAllUserCards(userID).then((res) => {
             for (let i = 0; i < res.data.length; i++) {
-                if (res.data[i].userId == userID) {
-                    if (res.data[i].id == card.id) {
-                        setIsmyUser(true); console.log("IS MY USER");
-                    }
+                if (res.data[i].userId == userID && res.data[i].id == id) {
+                    setIsmyUser(true);
                 }
             }
-
-
         }).catch((e) => { console.log(e); });
-
     }, []);
 
 
@@ -207,8 +164,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
                     </button>
                 </form>
             </div></>) : <>
-            <h5 className="display-5">it's save by another user... we cannot load the data...</h5>
-            <Pnf />
+            <NotUuser />
         </>}
     </>);
 }

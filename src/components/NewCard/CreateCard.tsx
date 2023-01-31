@@ -57,6 +57,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-7">
+                            <h5>image perview</h5>
                             <img src={imageIcon} height="450" alt="" />
                         </div>
                         <div className=" col-md-5">
@@ -134,7 +135,10 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
                                             id="floatingImage"
                                             placeholder="image"
                                             name="image"
-                                            onChange={formik.handleChange}
+                                            onChange={(e) => {
+                                                formik.handleChange(e);
+                                                setImageIcon(e.target.value);
+                                            }}
                                             value={formik.values.image}
                                             onBlur={formik.handleBlur}
 

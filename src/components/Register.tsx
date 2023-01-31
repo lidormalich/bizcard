@@ -8,9 +8,11 @@ import { addUser } from "../services/usersservices";
 interface RegisterProps {
     // isLogin: boolean;
     setIsLogIn: Function;
+    setUserName: Function;
+
 }
 
-const Register: FunctionComponent<RegisterProps> = ({ setIsLogIn }) => {
+const Register: FunctionComponent<RegisterProps> = ({ setIsLogIn, setUserName }) => {
     let navigate = useNavigate();
 
     let formik = useFormik({
@@ -29,7 +31,8 @@ const Register: FunctionComponent<RegisterProps> = ({ setIsLogIn }) => {
                     setIsLogIn(true);
                     sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
                     successMsg("You registered successfully!");
-                    navigate("/home");
+                    setUserName(res.data.name);
+                    navigate("/");
                 })
                 .catch((err) => console.log(err));
 
