@@ -20,56 +20,72 @@ import EditProfile from './components/Profile/EditProfile';
 
 
 
-// let isLogin: boolean = false;
+let themes = {
+  light: {
+    color: '#121212',
+    background: "white",
+  },
+  dark: {
+    color: "white",
+    background: "black",
+  }
+}
 
 
 export let isLoginGlobal = React.createContext<boolean>(false);
 export let userNameGlobal = React.createContext<string>("");
+export let siteTheme = React.createContext(themes.light);
+
 
 
 function App() {
   let [isLogin, setIsLogIn] = useState<boolean>(false);
   let [username, setUserName] = useState<string>("");
+  let [darkMode, setDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     try {
       let id = JSON.parse(sessionStorage.getItem("userData")!).userID;
       getUserInfo(id).then((res) => {
         setIsLogIn(true);
-        setUserName(res.data.name)
+        setUserName(res.data.name);
       });
     } catch (error) {
       setIsLogIn(false);
     }
   }, []);
   return (
+
     <div className="App">
+
       <ToastContainer />
 
       <Router>
         <isLoginGlobal.Provider value={isLogin}>
           <userNameGlobal.Provider value={username}>
-            <NavBarCMP setIsLogIn={setIsLogIn} />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/profile/edit' element={<EditProfile />} />
-              <Route path='/register' element={<Register setIsLogIn={setIsLogIn} />} />
-              <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/Newcard' element={<NewCardCMP />} />
-              <Route path='/Newcardcmp' element={<CreateCard />} />
-              <Route path='/Cards' element={<ShowAllCards />} />
-              <Route path='/MyCards' element={<UserMyCards />} />
-              <Route path='/MyCards/:id' element={<UpdateCard />} />
-              <Route path='*' element={<Pnf />} />
-            </Routes>
+            <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
+              <NavBarCMP setIsLogIn={setIsLogIn} />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/profile/edit' element={<EditProfile />} />
+                <Route path='/register' element={<Register setIsLogIn={setIsLogIn} />} />
+                <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/Newcard' element={<NewCardCMP />} />
+                <Route path='/Newcardcmp' element={<CreateCard />} />
+                <Route path='/Cards' element={<ShowAllCards />} />
+                <Route path='/MyCards' element={<UserMyCards />} />
+                <Route path='/MyCards/:id' element={<UpdateCard />} />
+                <Route path='*' element={<Pnf />} />
+              </Routes>
+            </siteTheme.Provider>
           </userNameGlobal.Provider>
         </isLoginGlobal.Provider>
       </Router>
-      {/* <footer>
+      <footer>
         <Footer />
-      </footer> */}
+      </footer>
 
     </div>
 

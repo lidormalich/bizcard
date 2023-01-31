@@ -7,7 +7,7 @@ interface FooterProps {
 const Footer: FunctionComponent<FooterProps> = () => {
     return (<>
 
-        <footer className="center text-white" style={{ opacity: "0.5" }}>
+        <div className="center text-white" >
             <div className="" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
                 <span>Created with <i className="fa fa-heart"></i> by Lidor Malich: © 2022 Copyright
                     <a href="https://lidormalich.netlify.app">lidormalich.netlify.app</a></span>
@@ -20,7 +20,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
                         role="button"><i className="fa-brands fa-github text-white"></i></a>
                 </section>
             </div>
-        </footer>
+        </div>
 
 
     </>);

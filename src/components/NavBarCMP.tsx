@@ -8,14 +8,14 @@ interface NavBarCMPProps {
 }
 
 const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
+
+
     let navigate = useNavigate();
     let isLogin = useContext<boolean>(isLoginGlobal);
     let username = useContext<string>(userNameGlobal);
 
 
-    // useEffect(() => {
-    //     getUserInfo(1)
-    // }, []);
+
 
 
     return (<div className="bg-dark text-light">
@@ -77,14 +77,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn }) => {
                             </li>
                         </>}
                     </ul>
-                    {/* {isLogin && <form className="d-flex" role="search">
-                        <button className="btn btn-outline-success" onClick={() => {
-                            sessionStorage.removeItem("userData");
-                            navigate("/");
 
-                            setIsLogIn(false);
-                        }}>Logout</button>
-                    </form>} */}
                     {isLogin && <>
                         <Nav className="me-5">
                             <NavDropdown title={`Hi ${username}`} id="collasible-nav-dropdown" className="btn btn-outline-black">
