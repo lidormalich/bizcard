@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import UpdateCard from './components/UpdateCard';
 import Pnf from './components/Extra/PageNotFound/Pnf';
 import EditProfile from './components/Profile/EditProfile';
+import Test from './components/Test';
 
 
 
@@ -52,7 +53,7 @@ function App() {
       });
     } catch (error) {
       setIsLogIn(false);
-      console.log(error);
+      // console.log(error);
     }
   }, []);
   return (
@@ -78,6 +79,7 @@ function App() {
                 <Route path='/Cards' element={<ShowAllCards />} />
                 <Route path='/MyCards' element={<UserMyCards />} />
                 <Route path='/MyCards/:id' element={<UpdateCard />} />
+                <Route path='/test' element={<Test />} />
                 <Route path='*' element={<Pnf />} />
               </Routes>
             </siteTheme.Provider>
