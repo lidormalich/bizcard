@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Admin Lidor MAlich",
+      "name": "Admin Lidor Malich",
       "email": "admin@gmail.com",
       "password": "adminadmin",
       "isBusiness": true,
@@ -25,65 +25,89 @@
       "id": 3
     },
     {
+      "name": "Moshe",
       "email": "fakemail@hhkhkad.com",
+      "location": "israel BB",
       "password": "12345678",
-      "name": "לידור",
-      "isBusiness": true,
-      "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png",
-      "location": "israel",
+      "image": "https://i.pinimg.com/originals/46/20/91/462091b66db05425ff0e8bba9d6249e7.jpg",
       "id": 4
     }
   ],
   "cards": [
     {
-      "companyName": "STRIJD khhdjadjk",
-      "companyEmail": "STRIJD khhdjadjk",
-      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/ab689b07-6805-4b1f-95af-9203ba55b268.__CR0,0,300,400_PT0_SX300_V1___.jpg",
-      "description": "string",
-      "address": "string",
+      "companyName": "Coca Cola Company",
+      "companyEmail": "nomail@mail.com",
+      "image": "https://serviced.co.il/wp-content/uploads/2021/08/%D7%A6%D7%95%D7%A8-%D7%A7%D7%A9%D7%A8-%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA-%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94.jpg",
+      "imageBGC": "",
       "userId": 1,
-      "phone": "0555555555",
+      "description": "Coca-Cola, or Coke, is a carbonated soft drink manufactured by the Coca-Cola Company.",
+      "address": "כנהמן בני ברק",
+      "phone": "1800-587-587",
       "id": 1
     },
     {
-      "companyName": "מנחם בגין כרטיס",
-      "companyEmail": "hime toren 10 dira 6",
-      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/ab689b07-6805-4b1f-95af-9203ba55b268.__CR0,0,300,400_PT0_SX300_V1___.jpg",
-      "description": "Brand\tLogitech G Color\tMint",
-      "address": "hime toren 10 dira 6",
-      "phone": "+972526761204",
-      "id": 2,
-      "userId": 2
+      "companyName": "NIKE",
+      "companyEmail": "nike@nike.com",
+      "image": "https://שירות-לקוחות.org.il/wp-content/uploads/2019/10/NIKE-%D7%A0%D7%99%D7%99%D7%A7-%D7%9C%D7%95%D7%92%D7%95.jpg",
+      "imageBGC": "",
+      "userId": 2,
+      "description": "Nike, Inc. (stylized as NIKE)[note 1] is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services.",
+      "address": "גנרל פייר קניג 27, ירושלים, 93469",
+      "phone": "02-623-6253",
+      "id": 2
     },
     {
-      "companyName": "King BOB",
-      "image": "https://i.pinimg.com/originals/46/20/91/462091b66db05425ff0e8bba9d6249e7.jpg",
+      "companyName": "Osem",
+      "companyEmail": "Osem@osem.co.il",
+      "image": "https://upload.wikimedia.org/wikipedia/he/thumb/2/22/Osem_Logo.svg/640px-Osem_Logo.svg.png",
+      "imageBGC": "",
       "userId": 1,
-      "description": "MINIONS",
-      "address": "221 becker street",
-      "phone": "00000000000000",
-      "companyEmail": "lidormalich@gmail.com",
+      "description": "אֹסֶם השקעות בע\"מ המוכרת בשמה המקוצר \"אסם\" היא קבוצת חברות מזון ישראלית גדולה, הנשלטת על ידי תאגיד המזון השווייצרי נסטלה, המחזיק ב-100% ממניותיה",
+      "address": "אסם בשדרות",
+      "phone": "1-700-70-76-76",
       "id": 3
     },
     {
-      "companyName": "לידור מליח",
-      "companyEmail": "",
-      "image": "https://m.media-amazon.com/images/I/61PRhYizhGL._AC_SL1500_.jpg",
-      "userId": 5,
-      "description": "punptu",
-      "address": "hime toren 10 dira 6",
-      "phone": "+972526761204",
+      "companyName": "Binance",
+      "companyEmail": "Binance@Binance.com",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Binance_logo.svg/330px-Binance_logo.svg.png",
+      "imageBGC": "",
+      "userId": 2,
+      "description": "Binance cryptocurrency exchange - We operate the worlds biggest bitcoin exchange and altcoin crypto exchange in the world by volume.",
+      "address": "Binance USA",
+      "phone": "1800800800",
       "id": 4
     },
     {
-      "companyName": "Test by Demo",
-      "companyEmail": "",
-      "image": "https://as2.ftcdn.net/v2/jpg/03/17/25/45/1000_F_317254576_lKDALRrvGoBr7gQSa1k4kJBx7O2D15dc.jpg",
-      "description": "no add1",
-      "address": "hime toren 10 dira 6",
-      "userId": 3,
-      "phone": "+972526761204",
+      "companyName": "Linkedin",
+      "companyEmail": "support@linkedin.com",
+      "image": "https://www.talintinternational.com/wp-content/uploads/2022/06/Linkedin-Logo.png",
+      "imageBGC": "",
+      "userId": 4,
+      "description": "LinkedIn is a business and employment-focused social media platform that works through websites and mobile apps. ",
+      "address": "1000 W Maude Ave, Sunnyvale, CA 94085, USA.",
+      "phone": "1700700700",
       "id": 5
+    }
+  ],
+  "favorite": [
+    {
+      "id": 1,
+      "userId": 3,
+      "cards": []
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "cards": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "cards": []
     }
   ]
 }

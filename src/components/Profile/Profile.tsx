@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { isLoginGlobal } from "../../App";
 import UserInterface from "../../interface/UserInterface";
 import { getAllUserCards } from "../../services/cardServices";
@@ -11,6 +12,7 @@ interface ProfileProps {
 }
 
 const Profile: FunctionComponent<ProfileProps> = () => {
+    let navigate = useNavigate();
     let [length, setLength] = useState<number>(0);
     let isLogin = useContext<boolean>(isLoginGlobal);
     let [user, setUser] = useState<UserInterface>({
@@ -55,18 +57,22 @@ const Profile: FunctionComponent<ProfileProps> = () => {
                         <div className=" button primary ghost my-3">
                             You have {length} cards
                         </div>
-                        <button className="primary" onClick={() => console.log("a")
+                        <button className="primary" onClick={() => {
+                            navigate("/Profile/Edit");
+                        }
                         }>
                             Edit Profile
                         </button>
                     </div>
                     <div className="by">
-                        <p>creat by lidor</p>
+                        {/* <p>creat by lidor</p> */}
+                        <p className="">{user.isBusiness ? "Business" : "Regular"}</p>
                     </div>
                 </div>
 
             </div>
-        </> : (<NotHaveAccess />)}
+        </> : (<NotHaveAccess />)
+        }
     </>);
 }
 

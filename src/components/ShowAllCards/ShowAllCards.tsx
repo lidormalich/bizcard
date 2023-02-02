@@ -1,6 +1,9 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import Card from "../../interface/Card";
+import { Button } from "react-bootstrap";
+import CardInterface from "../../interface/CardInterface";
 import { getAllCard } from "../../services/cardServices";
+import { addCardToFavorite, getAllCardsFavorite, removeCardFromFavorite } from "../../services/favoriteServices";
+import { successMessage } from "../../services/FeedbackService";
 import CardCMP from "../CardCMP";
 import "./ShowAllCards.css";
 
@@ -9,9 +12,10 @@ interface ShowAllCardsProps {
 }
 
 const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
-    let [allCard, setAllCard] = useState<Card[]>([]);
+    let [allCard, setAllCard] = useState<CardInterface[]>([]);
 
     useEffect(() => {
+        getAllCardsFavorite();
         getAllCard().then((res) => {
             setAllCard(res.data);
         }).catch((e) => console.log(e))
@@ -19,9 +23,10 @@ const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
 
     return (<>
         <div className="container">
-            {allCard.length ? allCard.map((cardItem: Card) => (
+            {allCard.length ? allCard.map((cardItem: CardInterface) => (
                 <div className="display" key={cardItem.id}>
                     <CardCMP cardItem={cardItem} userCanEdit={false} />
+
                 </div>
             )) : <p>no card</p>}
         </div>

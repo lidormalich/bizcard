@@ -1,15 +1,37 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../interface/Card";
+import { isLoginGlobal } from "../App";
+import CardInterface from "../interface/CardInterface";
+import { addCardToFavorite, removeCardFromFavorite } from "../services/favoriteServices";
+import { successMessage } from "../services/FeedbackService";
 
 interface CardCMPProps {
-    cardItem: Card;
+    cardItem: CardInterface;
     userCanEdit: boolean;
 }
 
 const CardCMP: FunctionComponent<CardCMPProps> = ({ cardItem, userCanEdit }) => {
     let navigat = useNavigate();
+    // let isLogin = useContext(isLoginGlobal);
     return (<>
+
+        {/* //בדיקהה והוספה למועדיפים
+        {isLogin && <>
+
+            <div onClick={() => {
+                removeCardFromFavorite(cardItem.id as number).then(() => successMessage(`${cardItem.id} remove from fav!`))
+                    .catch((e) => console.log(e));
+            }}>
+                <i className="fa-solid fa-heart-circle-minus"></i>
+            </div>
+            <div onClick={() => {
+                addCardToFavorite(cardItem.id as number).then(() => successMessage(`${cardItem.id} Added to fav!`))
+                    .catch((e) => console.log(e));
+            }}>
+                <i className="fa-solid fa-heart-circle-plus"></i>
+            </div>
+        </>} */}
+
         <div className="display-item">
             <div className="flippable-business-card">
                 <div className="front">
@@ -31,7 +53,7 @@ const CardCMP: FunctionComponent<CardCMPProps> = ({ cardItem, userCanEdit }) => 
                     <div className="front-bottom">
                         <div>
                             <h3>{cardItem.companyName}</h3>
-                            <span>Fascism Foiler</span>
+                            <span>{cardItem.address}</span>
                         </div>
                         <div>
                             <div>

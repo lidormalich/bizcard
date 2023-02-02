@@ -12,6 +12,6 @@ export function getUserInfo(userIDtoCheck: Number) {
 export function addUser(userToAdd: UserInterface) {
     return axios.post(api, userToAdd);
 }
-export function updateUser(id: number, UserToUpdate: UserInterface) {
+export function updateUserInfo(id: number, UserToUpdate: UserInterface) {
     return axios.put(`${api}/${id}`, UserToUpdate)
 }

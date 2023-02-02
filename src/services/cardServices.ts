@@ -1,5 +1,5 @@
 import axios from "axios";
-import Card from "../interface/Card";
+import Card from "../interface/CardInterface";
 
 let api = process.env.REACT_APP_API + "/cards" || "";
 

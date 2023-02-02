@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
-import Card from "../interface/Card";
+import Card from "../interface/CardInterface";
 import { getAllUserCards, getSpicificCard, updateCard } from "../services/cardServices";
 import { isLoginGlobal } from "../App";
 import NotHaveAccess from "./Extra/NotHaveAccess/NotHaveAccess";
@@ -24,6 +24,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         companyName: "",
         companyEmail: "",
         image: "",
+        imageBGC: "",
         description: "",
         address: "",
         phone: ""
@@ -48,6 +49,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             companyName: card.companyName,
             companyEmail: card.companyEmail,
             image: card.image,
+            imageBGC: card.imageBGC,
             description: card.description,
             address: card.address,
             userId: userID,
@@ -57,6 +59,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         validationSchema: yup.object({
             companyName: yup.string().required().min(2),
             image: yup.string(),
+            imageBGC: yup.string(),
             description: yup.string().required().min(5),
             address: yup.string().required().min(5),
             phone: yup.string().required().min(7),
@@ -155,12 +158,29 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
                             <p className="text-danger">{formik.errors.image}</p>
                         )}
                     </div>
+                    <div className="form-floating mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="floatingImageBGC"
+                            placeholder="imageBGC"
+                            name="imageBGC"
+                            onChange={formik.handleChange}
+                            value={formik.values.imageBGC}
+                            onBlur={formik.handleBlur}
+
+                        />
+                        <label htmlFor="floatingImageBGC">image background</label>
+                        {formik.touched.imageBGC && formik.errors.imageBGC && (
+                            <p className="text-danger">{formik.errors.imageBGC}</p>
+                        )}
+                    </div>
                     <button
                         type="submit"
                         className="btn btn-secondary w-100 my-3"
                         disabled={!formik.dirty || !formik.isValid}
                     >
-                        <i className="fa-solid fa-plus text-white"></i> Save
+                        <i className="fa-solid fa-floppy-disk"></i> Save
                     </button>
                 </form>
             </div></>) : <>
