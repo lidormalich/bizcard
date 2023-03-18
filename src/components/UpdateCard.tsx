@@ -31,15 +31,15 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
     });
     useEffect(() => {
         console.log(id + "ID CARD");
-        getSpicificCard(id as string, sessionStorage.getItem("Authorization") as string).then((res) => { setCard(res.data) }).catch((e) => {
+        getSpicificCard(id as string, sessionStorage.getItem("Authorization") as string).then((res) => { setCard(res.data[0]) }).catch((e) => {
             console.log(e);
         });
         getAllUserCards(sessionStorage.getItem("Authorization") as string).then((res) => {
-            for (let i = 0; i < res.data.length; i++) {
-                // if (res.data[i].userId == userID && res.data[i].id == id) {
-                setIsmyUser(true);
-                // }
-            }
+            // for (let i = 0; i < res.data.length; i++) {
+            // if (res.data[i].userId == userID && res.data[i].id == id) {
+            //     setIsmyUser(true);
+            // }
+            // }
         }).catch((e) => { console.log(e); });
     }, []);
 
@@ -64,7 +64,8 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             phone: yup.string().required().min(7),
         }),
         onSubmit: (values: Card) => {
-            updateCard(parseInt(id as string), { ...values }).then((res) => navigat("/mycards")).catch((e) => console.log(e));
+            // 222222
+            updateCard(id as string, { ...values }).then((res) => navigat("/mycards")).catch((e) => console.log(e));
         }
 
     })

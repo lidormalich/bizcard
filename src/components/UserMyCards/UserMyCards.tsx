@@ -16,13 +16,12 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
     let [allCard, setAllCard] = useState<CardInterface[]>([]);
     let isLogin = useContext<boolean>(isLoginGlobal);
 
-    let userId = JSON.parse(sessionStorage.getItem("userData") as string).token;
-    useEffect(() => {
-        // console.log("Line 20 hsfhakhafkhfhkafhkafhkafkhakhafhkafhka");
+    let userId = sessionStorage.getItem("Authorization");
 
+    useEffect(() => {
         try {
 
-            getAllUserCards(userId).then((res) => {
+            getAllUserCards(userId as string).then((res) => {
                 setAllCard(res.data);
             }).catch((e) => console.log(e));
         } catch (error) {

@@ -15,3 +15,7 @@ export function addUser(userToAdd: UserInterface) {
 export function updateUserInfo(id: number, UserToUpdate: UserInterface) {
     return axios.put(`${api}/${id}`, UserToUpdate)
 }
+// get is bis
+export function isBusinessUser() {
+    return axios.get(`${api}/me/isBusiness`, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } })
+}

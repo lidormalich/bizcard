@@ -11,14 +11,12 @@ export function getAllCard() {
     return axios.get(api);
 }
 export function getAllUserCards(auth: string) {
-    console.log(auth);
-
     return axios.get(`${api}/user`, { headers: { 'Authorization': auth } });
 }
 export function addCard(cardToAdd: Card) {
-    return axios.post(api, cardToAdd);
+    return axios.post(api, cardToAdd, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } });
 }
-export function updateCard(id: number, cradToUpdate: Card) {
+export function updateCard(id: string, cradToUpdate: Card) {
     return axios.put(`${api}/${id}`, cradToUpdate)
 }
 export function deleteCard() {
