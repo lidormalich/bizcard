@@ -8,6 +8,8 @@ import { isLoginGlobal } from "../App";
 import NotHaveAccess from "./Extra/NotHaveAccess/NotHaveAccess";
 import Pnf from "./Extra/PageNotFound/Pnf";
 import NotUuser from "./Extra/NotUuser/NotUuser";
+import { getUserId } from "../services/usersservices";
+import { errorMessage, successMessage } from "../services/FeedbackService";
 
 interface UpdateCardProps {
 
@@ -30,17 +32,17 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         phone: ""
     });
     useEffect(() => {
-        console.log(id + "ID CARD");
         getSpicificCard(id as string, sessionStorage.getItem("Authorization") as string).then((res) => { setCard(res.data[0]) }).catch((e) => {
-            console.log(e);
+            errorMessage(e.request.message);
         });
         getAllUserCards(sessionStorage.getItem("Authorization") as string).then((res) => {
-            // for (let i = 0; i < res.data.length; i++) {
-            // if (res.data[i].userId == userID && res.data[i].id == id) {
-            //     setIsmyUser(true);
-            // }
-            // }
-        }).catch((e) => { console.log(e); });
+
+            for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i].userId == getUserId() && res.data[i]._id == id) {
+                    setIsmyUser(true);
+                }
+            }
+        }).catch((e) => { errorMessage(e.request.message); });
     }, []);
 
 
@@ -65,7 +67,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         }),
         onSubmit: (values: Card) => {
             // 222222
-            updateCard(id as string, { ...values }).then((res) => navigat("/mycards")).catch((e) => console.log(e));
+            updateCard(id as string, { ...values }).then((res) => { successMessage("Card Save"); navigat("/mycards") }).catch((e) => console.log(e));
         }
 
     })

@@ -17,7 +17,7 @@ export function addCard(cardToAdd: Card) {
     return axios.post(api, cardToAdd, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } });
 }
 export function updateCard(id: string, cradToUpdate: Card) {
-    return axios.put(`${api}/${id}`, cradToUpdate)
+    return axios.put(`${api}/${id}`, cradToUpdate, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } })
 }
 export function deleteCard() {
     return axios.delete(api);

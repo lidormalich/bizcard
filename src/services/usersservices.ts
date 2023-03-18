@@ -1,5 +1,6 @@
 import axios from "axios";
 import UserInterface from "../interface/UserInterface";
+import jwt_decode from "jwt-decode";
 
 let api = process.env.REACT_APP_API || "";
 
@@ -17,5 +18,10 @@ export function updateUserInfo(id: number, UserToUpdate: UserInterface) {
 }
 // get is bis
 export function isBusinessUser() {
-    return axios.get(`${api}/me/isBusiness`, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } })
+    let token = sessionStorage.getItem("Authorization");
+    return (jwt_decode(token as string) as any).isBusiness;
+}
+export function getUserId() {
+    let token = sessionStorage.getItem("Authorization");
+    return (jwt_decode(token as string) as any)._id;
 }

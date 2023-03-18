@@ -8,18 +8,16 @@ interface NewCardCMPProps {
 }
 
 const NewCardCMP: FunctionComponent<NewCardCMPProps> = () => {
-    let [isBusiness, setisBusinessUser] = useState<any>(false);
+    // let [isBusiness, setisBusinessUser] = useState<any>(false);
 
-    useEffect(() => {
-        isBusinessUser().then(res => setisBusinessUser(res.data.isBusiness))
-    }, []);
+
 
     // setisBusinessUser(isBusiness == true ? true : false);
     // useEffect(() => {
     //     setisBusiness(JSON.parse(sessionStorage.getItem("userData") as string).isBusiness);
     // }, []);
     return (<>
-        {isBusiness == true ? <CreateCard /> : <NotHaveAccess />}
+        {isBusinessUser() == true ? <CreateCard /> : <NotHaveAccess />}
     </>);
 }
 

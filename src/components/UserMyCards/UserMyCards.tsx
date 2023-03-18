@@ -23,6 +23,7 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
 
             getAllUserCards(userId as string).then((res) => {
                 setAllCard(res.data);
+
             }).catch((e) => console.log(e));
         } catch (error) {
             console.log(error);
