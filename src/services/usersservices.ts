@@ -1,10 +1,10 @@
 import axios from "axios";
 import UserInterface from "../interface/UserInterface";
 
-let api = process.env.REACT_APP_API + "/users" || "";
+let api = process.env.REACT_APP_API || "";
 
 export function checkUser(usertoCheck: UserInterface) {
-    return axios.get(`${api}?email=${usertoCheck.email}&password=${usertoCheck.password}`);
+    return axios.post(`${api}/login`, usertoCheck);
 }
 export function getUserInfo(userIDtoCheck: Number) {
     return axios.get(`${api}/${userIDtoCheck}`);

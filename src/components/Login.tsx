@@ -22,15 +22,12 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn, setUserName }) => {
         }),
         onSubmit: (values: UserInterface) => {
             checkUser(values).then((res) => {
-                if (res.data.length) {
-                    setIsLogIn(true);
-                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data[0].isBusiness, userID: res.data[0].id }));
-                    setUserName(res.data[0].name);
-                    successMessage("You are log-in :)");
-                    navigate('/mycards');
-                }
-                else { errorMessage("Wrong email or password"); navigate('/Signin'); }
-            }).catch((e) => { errorMessage("Wrong email or password"); console.log(e); }
+                setIsLogIn(true);
+                sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, token: res.data }));
+                setUserName(res.data[0].name);
+                successMessage("You are log-in :)");
+                navigate('/mycards');
+            }).catch((e) => { errorMessage("Wrong email or password"); navigate('/Signin'); console.log(e); }
             );
         }
     })

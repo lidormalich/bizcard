@@ -24,7 +24,7 @@ const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
     return (<>
         <div className="container">
             {allCard.length ? allCard.map((cardItem: CardInterface) => (
-                <div className="display" key={cardItem.id}>
+                <div className="display" key={cardItem._id}>
                     <CardCMP cardItem={cardItem} userCanEdit={false} />
 
                 </div>

@@ -91,7 +91,7 @@ const CardCMP: FunctionComponent<CardCMPProps> = ({ cardItem, userCanEdit }) => 
                                 </div>
 
                                 {userCanEdit && <div onClick={() => {
-                                    navigat(`/MyCards/${cardItem.id}`)
+                                    navigat(`/MyCards/${cardItem._id}`)
                                 }}>
                                     <i className="fa-solid fa-pen-to-square"></i>
                                 </div>}

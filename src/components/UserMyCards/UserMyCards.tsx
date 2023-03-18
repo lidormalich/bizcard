@@ -16,12 +16,12 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
     let [allCard, setAllCard] = useState<CardInterface[]>([]);
     let isLogin = useContext<boolean>(isLoginGlobal);
 
-    let userId: number = -1;
+    let userId = JSON.parse(sessionStorage.getItem("userData") as string).token;
     useEffect(() => {
         // console.log("Line 20 hsfhakhafkhfhkafhkafhkafkhakhafhkafhka");
 
         try {
-            userId = JSON.parse(sessionStorage.getItem("userData") as string).userID;
+
             getAllUserCards(userId).then((res) => {
                 setAllCard(res.data);
             }).catch((e) => console.log(e));
@@ -43,7 +43,7 @@ const UserMyCards: FunctionComponent<UserMyCardsProps> = () => {
                 /> */}
 
                 {allCard.length ? allCard.map((cardItem: CardInterface) => (
-                    <div className="display" key={cardItem.id}>
+                    <div className="display" key={cardItem._id}>
                         <CardCMP cardItem={cardItem} userCanEdit={true} />
                     </div>
                 )) : <>

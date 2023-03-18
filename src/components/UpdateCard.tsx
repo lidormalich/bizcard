@@ -31,10 +31,10 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
     });
     useEffect(() => {
         console.log(id);
-        getSpicificCard(parseInt(id as string)).then((res) => { setCard(res.data); }).catch((e) => {
+        getSpicificCard(id as string).then((res) => { setCard(res.data); }).catch((e) => {
             console.log(e);
         });
-        getAllUserCards(userID).then((res) => {
+        getAllUserCards(sessionStorage.getItem("Authorization") as string).then((res) => {
             for (let i = 0; i < res.data.length; i++) {
                 if (res.data[i].userId == userID && res.data[i].id == id) {
                     setIsmyUser(true);

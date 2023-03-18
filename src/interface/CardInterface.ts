@@ -1,5 +1,5 @@
 export default interface CardInterface {
-    id?: number,
+    _id?: number,
     companyName: string,
     companyEmail: string,
     image: string,

@@ -30,7 +30,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
                 sessionStorage.getItem("userData") as string
             ).userID;
 
-            getAllUserCards(userId).then((res) => setLength(res.data.length));
+            // getAllUserCards(userId).then((res) => setLength(res.data.length));
 
             getUserInfo(userId).then((res) => {
                 // console.log(res.data);

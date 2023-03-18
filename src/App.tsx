@@ -63,7 +63,7 @@ function App() {
       <ToastContainer />
 
       <Router>
-        <isLoginGlobal.Provider value={isLogin}>
+        <isLoginGlobal.Provider value={true}>
           <userNameGlobal.Provider value={username}>
             <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
               <NavBarCMP setIsLogIn={setIsLogIn} username={username} />
@@ -71,7 +71,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/profile/edit' element={<EditProfile />} />
                 <Route path='/register' element={<Register setIsLogIn={setIsLogIn} setUserName={setUserName} />} />
-                <Route path='/signin' element={<Login setIsLogIn={setIsLogIn} setUserName={setUserName} />} />
+                <Route path='/login' element={<Login setIsLogIn={setIsLogIn} setUserName={setUserName} />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/Newcard' element={<NewCardCMP />} />

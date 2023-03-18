@@ -4,14 +4,16 @@ import Card from "../interface/CardInterface";
 let api = process.env.REACT_APP_API + "/cards" || "";
 
 
-export function getSpicificCard(cardID: Number) {
+export function getSpicificCard(cardID: string) {
     return axios.get(`${api}/${cardID}`);
 }
 export function getAllCard() {
     return axios.get(api);
 }
-export function getAllUserCards(userId: number) {
-    return axios.get(`${api}?userId=${userId}`);
+export function getAllUserCards(token: string) {
+    console.log(token);
+
+    return axios.get(`${api}/user`, { headers: { 'Authorization': token } });
 }
 export function addCard(cardToAdd: Card) {
     return axios.post(api, cardToAdd);
