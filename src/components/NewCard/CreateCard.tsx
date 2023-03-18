@@ -23,14 +23,12 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
     // useEffect(() => {
     //     // refresh
     // }, [imageIcon]);
-    let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
     let formik = useFormik({
         initialValues: {
             companyName: "",
             companyEmail: "",
             image: "",
             imageBGC: "",
-            userId: userID,
             description: "",
             address: "",
             phone: "",

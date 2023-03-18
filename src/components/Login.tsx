@@ -23,7 +23,8 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn, setUserName }) => {
         onSubmit: (values: UserInterface) => {
             checkUser(values).then((res) => {
                 setIsLogIn(true);
-                sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, token: res.data }));
+                // sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, token: res.data }));
+                sessionStorage.setItem("Authorization", res.data);
                 setUserName(res.data[0].name);
                 successMessage("You are log-in :)");
                 navigate('/mycards');

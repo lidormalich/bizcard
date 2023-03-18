@@ -16,7 +16,7 @@ interface UpdateCardProps {
 const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
     let { id } = useParams();
     let [ismyUser, setIsmyUser] = useState<boolean>(false);
-    let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
+    // let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
 
     let navigat = useNavigate();
     let isLogin = useContext<boolean>(isLoginGlobal);
@@ -30,15 +30,15 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         phone: ""
     });
     useEffect(() => {
-        console.log(id);
-        getSpicificCard(id as string).then((res) => { setCard(res.data); }).catch((e) => {
+        console.log(id + "ID CARD");
+        getSpicificCard(id as string, sessionStorage.getItem("Authorization") as string).then((res) => { setCard(res.data) }).catch((e) => {
             console.log(e);
         });
         getAllUserCards(sessionStorage.getItem("Authorization") as string).then((res) => {
             for (let i = 0; i < res.data.length; i++) {
-                if (res.data[i].userId == userID && res.data[i].id == id) {
-                    setIsmyUser(true);
-                }
+                // if (res.data[i].userId == userID && res.data[i].id == id) {
+                setIsmyUser(true);
+                // }
             }
         }).catch((e) => { console.log(e); });
     }, []);
@@ -52,7 +52,6 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             imageBGC: card.imageBGC,
             description: card.description,
             address: card.address,
-            userId: userID,
             phone: card.phone
         },
         enableReinitialize: true,
