@@ -45,7 +45,7 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn, username }) 
                             </NavLink>
                         </li>
                         {!isLogin && <><li className="nav-item">
-                            <NavLink className="nav-link" to="/Signin">
+                            <NavLink className="nav-link" to="/login">
                                 Sign-In
                             </NavLink>
                         </li>
@@ -88,7 +88,8 @@ const NavBarCMP: FunctionComponent<NavBarCMPProps> = ({ setIsLogIn, username }) 
                                 <NavDropdown.Item href="/profile/edit">Edit Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/" onClick={() => {
-                                    sessionStorage.removeItem("userData");
+                                    sessionStorage.removeItem("Authorization");
+                                    sessionStorage.removeItem("isLogin");
                                     navigate("/");
                                     setIsLogIn(false);
                                 }}>Logout

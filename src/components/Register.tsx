@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 import UserInterface from "../interface/UserInterface";
 import { errorMessage, successMessage as successMsg } from "../services/FeedbackService";
-import { addUser } from "../services/usersservices";
+import { addUser, getUserName } from "../services/usersservices";
 interface RegisterProps {
     // isLogin: boolean;
     setIsLogIn: Function;
@@ -28,11 +28,20 @@ const Register: FunctionComponent<RegisterProps> = ({ setIsLogIn, setUserName })
         onSubmit: (values: UserInterface) => {
             addUser({ ...values })
                 .then((res) => {
+                    // setIsLogIn(true);
+                    // sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
+                    // successMsg("You registered successfully!");
+                    // setUserName(res.data.name);
+                    // navigate("/");
+
                     setIsLogIn(true);
-                    sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, isBusiness: res.data.isBusiness, userID: res.data.id }));
-                    successMsg("You registered successfully!");
+                    sessionStorage.setItem("Authorization", res.data);
+                    sessionStorage.setItem("isLogin", "true");
                     setUserName(res.data.name);
-                    navigate("/");
+                    console.log(res.data);
+                    successMsg("You are log-in :)");
+                    navigate('/');
+                    getUserName().then(res2 => setUserName(res2.data.name))
                 })
                 .catch((err) => console.log(err));
 

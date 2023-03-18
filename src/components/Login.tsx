@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import UserInterface from "../interface/UserInterface";
 import { errorMessage, successMessage } from "../services/FeedbackService";
-import { checkUser } from "../services/usersservices";
+import { checkUser, getUserName } from "../services/usersservices";
 
 interface LoginProps {
     setIsLogIn: Function;
@@ -23,13 +23,17 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn, setUserName }) => {
         onSubmit: (values: UserInterface) => {
             checkUser(values).then((res) => {
                 setIsLogIn(true);
-                // sessionStorage.setItem("userData", JSON.stringify({ isLoggedIn: true, token: res.data }));
                 sessionStorage.setItem("Authorization", res.data);
-                setUserName(res.data[0].name);
+                sessionStorage.setItem("isLogin", "true");
+                setUserName(res.data.name);
+                console.log(res.data);
                 successMessage("You are log-in :)");
                 navigate('/mycards');
+                getUserName().then(res2 => setUserName(res2.data.name))
             }).catch((e) => { errorMessage("Wrong email or password"); navigate('/Signin'); console.log(e); }
             );
+
+
         }
     })
 

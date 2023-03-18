@@ -25,3 +25,6 @@ export function getUserId() {
     let token = sessionStorage.getItem("Authorization");
     return (jwt_decode(token as string) as any)._id;
 }
+export function getUserName() {
+    return axios.get(`${api}/me/name`, { headers: { 'Authorization': sessionStorage.getItem("Authorization") } })
+}

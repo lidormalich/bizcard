@@ -45,16 +45,16 @@ function App() {
   let [darkMode, setDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    try {
-      let id = JSON.parse(sessionStorage.getItem("userData")!).userID;
-      getUserInfo(id).then((res) => {
-        setIsLogIn(true);
-        setUserName(res.data.name);
-      });
-    } catch (error) {
-      setIsLogIn(false);
-      // console.log(error);
-    }
+    // try {
+    // let islogin = sessionStorage.getItem("isLogin");
+    // getUserInfo(id).then((res) => {
+    setIsLogIn(sessionStorage.getItem("isLogin") == "true" ? true : false);
+    //   setUserName(res.data.name);
+    // });
+    // } catch (error) {
+    // setIsLogIn(false);
+    // console.log(error);
+    // }
   }, []);
   return (
 
@@ -63,7 +63,7 @@ function App() {
       <ToastContainer />
 
       <Router>
-        <isLoginGlobal.Provider value={true}>
+        <isLoginGlobal.Provider value={isLogin}>
           <userNameGlobal.Provider value={username}>
             <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
               <NavBarCMP setIsLogIn={setIsLogIn} username={username} />
