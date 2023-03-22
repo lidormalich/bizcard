@@ -30,7 +30,7 @@ const Login: FunctionComponent<LoginProps> = ({ setIsLogIn, setUserName }) => {
                 successMessage("You are log-in :)");
                 navigate('/mycards');
                 getUserName().then(res2 => setUserName(res2.data.name))
-            }).catch((e) => { errorMessage("Wrong email or password"); navigate('/Signin'); console.log(e); }
+            }).catch((e) => { errorMessage("Wrong email or password"); navigate('/login'); console.log(e); }
             );
 
 
