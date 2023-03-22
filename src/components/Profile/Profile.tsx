@@ -17,22 +17,20 @@ const Profile: FunctionComponent<ProfileProps> = () => {
     let isLogin = useContext<boolean>(isLoginGlobal);
     let [user, setUser] = useState<UserInterface>({
         id: 0,
-        name: "string",
-        email: "string",
-        password: "string",
-        location: "string",
+        name: "",
+        email: "",
+        password: "",
+        location: "",
     });
     useEffect(() => {
 
 
         try {
-            let userId: number = JSON.parse(
-                sessionStorage.getItem("userData") as string
-            ).userID;
+
 
             // getAllUserCards(userId).then((res) => setLength(res.data.length));
 
-            getUserInfo(userId).then((res) => {
+            getUserInfo().then((res) => {
                 // console.log(res.data);
                 setUser(res.data)
             });

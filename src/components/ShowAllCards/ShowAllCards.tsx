@@ -28,7 +28,7 @@ const ShowAllCards: FunctionComponent<ShowAllCardsProps> = () => {
                     <CardCMP cardItem={cardItem} userCanEdit={false} />
 
                 </div>
-            )) : <p>no card</p>}
+            )) : <p className="display-2">no card to display, plaese log-in to system</p>}
         </div>
     </>);
 }

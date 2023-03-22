@@ -13,7 +13,7 @@ interface EditProfileProps {
 }
 
 const EditProfile: FunctionComponent<EditProfileProps> = () => {
-    let userID: number = JSON.parse(sessionStorage.getItem("userData") as string).userID;
+    // let userID: string = JSON.parse(sessionStorage.getItem("userData") as string).userID;
 
     let navigat = useNavigate();
     let isLogin = useContext<boolean>(isLoginGlobal);
@@ -25,7 +25,7 @@ const EditProfile: FunctionComponent<EditProfileProps> = () => {
         image: ""
     });
     useEffect(() => {
-        getUserInfo(userID).then((res) => { setUser(res.data); }).catch((e) => {
+        getUserInfo().then((res) => { setUser(res.data); }).catch((e) => {
             console.log(e);
         });
     }, []);
@@ -48,7 +48,7 @@ const EditProfile: FunctionComponent<EditProfileProps> = () => {
             location: yup.string().min(4),
         }),
         onSubmit: (values: UserInterface) => {
-            updateUserInfo(userID, { ...values }).then((res) => {
+            updateUserInfo({ ...values }).then((res) => {
                 successMessage("Update");
                 navigat("/profile");
             }

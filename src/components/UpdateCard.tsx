@@ -3,7 +3,7 @@ import { FunctionComponent, useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../interface/CardInterface";
-import { getAllUserCards, getSpicificCard, updateCard } from "../services/cardServices";
+import { deleteCard, getAllUserCards, getSpicificCard, updateCard } from "../services/cardServices";
 import { isLoginGlobal } from "../App";
 import NotHaveAccess from "./Extra/NotHaveAccess/NotHaveAccess";
 import Pnf from "./Extra/PageNotFound/Pnf";
@@ -29,7 +29,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
         imageBGC: "",
         description: "",
         address: "",
-        phone: ""
+        phone: "",
     });
     useEffect(() => {
         getSpicificCard(id as string, sessionStorage.getItem("Authorization") as string).then((res) => { setCard(res.data[0]) }).catch((e) => {
@@ -54,7 +54,7 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
             imageBGC: card.imageBGC,
             description: card.description,
             address: card.address,
-            phone: card.phone
+            phone: card.phone,
         },
         enableReinitialize: true,
         validationSchema: yup.object({
@@ -179,12 +179,18 @@ const UpdateCard: FunctionComponent<UpdateCardProps> = () => {
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-secondary w-100 my-3"
+                        className="btn btn-secondary my-3"
                         disabled={!formik.dirty || !formik.isValid}
                     >
                         <i className="fa-solid fa-floppy-disk"></i> Save
                     </button>
+
                 </form>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => deleteCard(id as string).then((res) => { successMessage("Card Deleted"); navigat("/mycards") }).catch((e) => console.log(e))}>
+                    <i className="fa-solid fa-floppy-disk"></i> Delete
+                </button>
             </div></>) : <>
             <NotUuser />
         </>}
